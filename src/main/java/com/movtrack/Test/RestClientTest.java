@@ -1,5 +1,7 @@
-package com.movtrack;
+package com.movtrack.Test;
 
+import com.movtrack.RestClient.Movie;
+import com.movtrack.RestClient.SearchResult;
 import org.junit.jupiter.api.Test;
 
 import javax.ws.rs.client.Client;

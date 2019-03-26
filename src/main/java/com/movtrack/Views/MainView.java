@@ -1,9 +1,9 @@
-package com.movtrack;
+package com.movtrack.Views;
 
+import com.movtrack.ProgressBar;
+import com.movtrack.RestClient.RestClient;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
@@ -14,11 +14,11 @@ import com.vaadin.flow.server.PWA;
 @PWA(name = "MovTrack - Track watched Movies and TV Shows", shortName = "MovTrack")
 public class MainView extends VerticalLayout {
 
-    RestClient restClient;
-    HorizontalLayout hlHeader;
-    ProgressBar progressBar;
-    Label lblTitle;
-    TextField txtSearchBar;
+    private RestClient restClient;
+    private HorizontalLayout hlHeader;
+    private ProgressBar progressBar;
+    private Label lblTitle;
+    private TextField txtSearchBar;
 
     public MainView() {
         restClient = new RestClient();

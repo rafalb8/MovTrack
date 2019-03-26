@@ -1,4 +1,4 @@
-package com.movtrack;
+package com.movtrack.RestClient;
 
 import java.util.HashMap;
 import java.util.List;
@@ -91,7 +91,7 @@ public class Movie {
     @JsonProperty("Response")
     private String response;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("Title")
     public String getTitle() {

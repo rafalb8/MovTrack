@@ -1,4 +1,4 @@
-package com.movtrack;
+package com.movtrack.RestClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +21,7 @@ public class Rating {
     @JsonProperty("Value")
     private String value;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("Source")
     public String getSource() {

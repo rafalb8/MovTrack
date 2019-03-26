@@ -1,4 +1,4 @@
-package com.movtrack;
+package com.movtrack.RestClient;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -6,8 +6,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 public class RestClient {
-    Client client;
-    WebTarget webtarget;
+    private Client client;
+    private WebTarget webtarget;
 
     /*
         t - Get movie by title

@@ -1,4 +1,4 @@
-package com.movtrack;
+package com.movtrack.RestClient;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +30,7 @@ public class Search {
     @JsonProperty("Poster")
     private String poster;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
+    private Map<String, Object> additionalProperties = new HashMap<>();
 
     @JsonProperty("Title")
     public String getTitle() {
