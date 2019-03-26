@@ -34,7 +34,7 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
 
 
         hlHeader.add(lblTitle);
-        add(txtSearchBar, srList);
+        add(hlHeader, txtSearchBar, srList);
 
     }
 
