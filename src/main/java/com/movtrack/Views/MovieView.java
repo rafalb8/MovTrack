@@ -18,7 +18,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     public MovieView() {
         imgPoster = new Image();
         lblTitle = new Label();
-        txtPlot = new Text();
+        txtPlot = new Text("");
 
     }
 

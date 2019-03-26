@@ -3,7 +3,6 @@ package com.movtrack.Views;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.SearchResults;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -23,7 +22,7 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
 
 
     public SearchView() {
-        restClient = new RestClient();
+        restClient = RestClient.getInstance();
         hlHeader = new HorizontalLayout();
         lblTitle = new Label("MovTrack");
         txtSearchBar = new TextField();

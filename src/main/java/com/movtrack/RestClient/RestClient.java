@@ -6,6 +6,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 public class RestClient {
+    public static RestClient singleton;
+
     private Client client;
     private WebTarget webtarget;
 
@@ -15,9 +17,16 @@ public class RestClient {
         s - Search movie by title
     */
 
-    public RestClient(){
+    private RestClient(){
         client = ClientBuilder.newClient();
         webtarget = client.target("http://www.omdbapi.com/").queryParam("apikey", "b45ac754");
+    }
+
+    public static RestClient getInstance(){
+        if(singleton == null)
+            singleton = new RestClient();
+
+        return singleton;
     }
 
     public Movie getMovieByTitle(String param){
