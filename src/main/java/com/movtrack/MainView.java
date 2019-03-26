@@ -19,7 +19,6 @@ public class MainView extends VerticalLayout {
     ProgressBar progressBar;
     Label lblTitle;
     TextField txtSearchBar;
-    Button btnWatchList;
 
     public MainView() {
         restClient = new RestClient();
@@ -27,13 +26,13 @@ public class MainView extends VerticalLayout {
         progressBar = new ProgressBar();
         lblTitle = new Label("MovTrack");
         txtSearchBar = new TextField("Search");
-        btnWatchList = new Button("WatchList");
+
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
         // Add components to Layout
         add(hlHeader, txtSearchBar, progressBar);
-        hlHeader.add(lblTitle, btnWatchList);
+        hlHeader.add(lblTitle);
 
         // lblTitle style
         lblTitle.setWidthFull();
@@ -44,6 +43,6 @@ public class MainView extends VerticalLayout {
     }
 
     private void search(){
-        Notification.show(restClient.getMovieByTitle(txtSearchBar.getValue()).getPlot());
+
     }
 }

@@ -1,8 +1,5 @@
 package com.movtrack;
 
-import org.junit.Before;
-import org.junit.Test;
-
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -24,21 +21,15 @@ public class RestClient {
     }
 
     public Movie getMovieByTitle(String param){
-        return webtarget.queryParam("t", param).request(MediaType.APPLICATION_JSON_TYPE).get(Movie.class);
+        return webtarget.queryParam("t", param).request(MediaType.APPLICATION_JSON).get(Movie.class);
     }
 
     public Movie getMovieByID(String param){
-        return webtarget.queryParam("i", param).request(MediaType.APPLICATION_JSON_TYPE).get(Movie.class);
+        return webtarget.queryParam("i", param).request(MediaType.APPLICATION_JSON).get(Movie.class);
     }
 
     public SearchResult searchMovieByTitle(String param){
-        return webtarget.queryParam("s", param).request(MediaType.APPLICATION_JSON_TYPE).get(SearchResult.class);
-    }
-
-    @Test
-    private void performGETRequest(){
-        Movie m = webtarget.queryParam("t", "Avengers").request(MediaType.APPLICATION_JSON_TYPE).get(Movie.class);
-        //assertEquals()
+        return webtarget.queryParam("s", param).request(MediaType.APPLICATION_JSON).get(SearchResult.class);
     }
 
 }
