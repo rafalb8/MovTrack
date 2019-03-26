@@ -8,6 +8,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 
 public class MovieEntry extends HorizontalLayout {
+    private Search movie;
     private Image imgPoster;
     private VerticalLayout vlInfo;
     private Label lblTitle;
@@ -23,5 +24,14 @@ public class MovieEntry extends HorizontalLayout {
 
         vlInfo.add(lblTitle);
         add(imgPoster, vlInfo, lblType);
+        this.movie = movie;
+
+        getElement().addEventListener("click", event -> click());
+    }
+
+
+    public void click() {
+        getUI().get().navigate("movie/" + movie.getImdbID());
+
     }
 }

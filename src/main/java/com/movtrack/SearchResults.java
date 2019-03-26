@@ -13,6 +13,7 @@ public class SearchResults extends VerticalLayout {
         for(Search search: result.getSearch()){
             MovieEntry movie = new MovieEntry(search);
             add(movie);
+
         }
     }
 }
