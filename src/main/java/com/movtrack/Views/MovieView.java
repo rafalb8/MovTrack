@@ -11,6 +11,7 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
+// View showing detailed movie information
 @Route("movie")
 public class MovieView extends HorizontalLayout implements HasUrlParameter<String> {
 

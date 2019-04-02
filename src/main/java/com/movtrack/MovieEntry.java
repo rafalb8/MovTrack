@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 
+// Class representing entry in searched movies list
 public class MovieEntry extends HorizontalLayout {
     private Search movie;
     private Image imgPoster;
@@ -29,7 +30,7 @@ public class MovieEntry extends HorizontalLayout {
         getElement().addEventListener("click", event -> click());
     }
 
-
+    // Change view to MovieView
     public void click() {
         getUI().get().navigate("movie/" + movie.getImdbID());
 

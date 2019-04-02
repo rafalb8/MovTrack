@@ -1,6 +1,6 @@
 package com.movtrack.Views;
 
-import com.movtrack.ProgressBar;
+import com.movtrack.WatchlistBar;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -14,13 +14,13 @@ import com.vaadin.flow.server.PWA;
 public class MainView extends VerticalLayout {
 
     private HorizontalLayout hlHeader;
-    private ProgressBar progressBar;
+    private WatchlistBar watchlistBar;
     private Label lblTitle;
     private TextField txtSearchBar;
 
     public MainView() {
         hlHeader = new HorizontalLayout();
-        progressBar = new ProgressBar();
+        watchlistBar = new WatchlistBar();
         lblTitle = new Label("MovTrack");
         txtSearchBar = new TextField("Search");
 
@@ -28,8 +28,8 @@ public class MainView extends VerticalLayout {
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
         // Add components to Layout
-        add(hlHeader, txtSearchBar, progressBar);
         hlHeader.add(lblTitle);
+        add(hlHeader, txtSearchBar, watchlistBar);
 
         // lblTitle style
         lblTitle.setWidthFull();

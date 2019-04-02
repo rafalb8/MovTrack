@@ -11,6 +11,7 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
+// View showing search results
 @Route("search")
 public class SearchView extends VerticalLayout implements HasUrlParameter<String> {
 

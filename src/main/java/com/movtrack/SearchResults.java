@@ -4,8 +4,6 @@ import com.movtrack.RestClient.Search;
 import com.movtrack.RestClient.SearchResult;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-
-
 public class SearchResults extends VerticalLayout {
 
     public void refreshList(SearchResult result){
