@@ -1,6 +1,7 @@
 package com.movtrack;
 
 import com.movtrack.RestClient.Search;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -12,8 +13,8 @@ public class MovieEntry extends HorizontalLayout {
     private Search movie;
     private Image imgPoster;
     private VerticalLayout vlInfo;
-    private Label lblTitle;
-    private Label lblType;
+    private Html lblTitle;
+    private Html lblType;
     private WatchListButton btnWatch;
 
     public MovieEntry(Search movie) {
@@ -21,16 +22,16 @@ public class MovieEntry extends HorizontalLayout {
 
         imgPoster = new Image(movie.getPoster(), "Image not found");
         vlInfo = new VerticalLayout();
-        lblTitle = new Label(movie.getTitle() + " (" + movie.getYear() +")");
-        lblType = new Label(movie.getType().toUpperCase());
+        lblTitle = new Html("<h1>"+movie.getTitle() + " (" + movie.getYear() +")</h1>");
+        lblType = new Html("<h2>"+movie.getType().toUpperCase()+"</h2>");
         btnWatch = new WatchListButton();
 
-        vlInfo.add(lblTitle);
-        add(imgPoster, vlInfo, lblType, btnWatch);
+        vlInfo.add(lblTitle, lblType, btnWatch);
+        add(imgPoster, vlInfo);
 
-        setVerticalComponentAlignment(Alignment.END, btnWatch);
-
-        getElement().addEventListener("click", event -> click());
+        imgPoster.getElement().addEventListener("click", event -> click());
+        vlInfo.getElement().addEventListener("click", event -> click());
+        lblType.getElement().addEventListener("click", event -> click());
     }
 
     // Change view to MovieView
