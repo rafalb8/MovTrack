@@ -1,9 +1,12 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
+import com.movtrack.MovieEntry;
 import com.movtrack.RestClient.RestClient;
-import com.movtrack.SearchResults;
+import com.movtrack.RestClient.Search;
+import com.movtrack.RestClient.SearchResult;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEvent;
@@ -17,33 +20,40 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
     private RestClient restClient;
     private Banner banner;
     private TextField txtSearchBar;
-    private SearchResults srList;
+    private VerticalLayout vlSearchResults;
 
 
     public SearchView() {
         restClient = RestClient.getInstance();
         banner = new Banner();
         txtSearchBar = new TextField();
-        srList = new SearchResults();
+        vlSearchResults = new VerticalLayout();
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
 
+        add(banner, txtSearchBar, vlSearchResults);
+
         txtSearchBar.addKeyDownListener(Key.ENTER, event -> search());
-
-        add(banner, txtSearchBar, srList);
-
     }
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
-        srList.refreshList(restClient.searchMovieByTitle(parameter));
+        refreshList(restClient.searchMovieByTitle(parameter));
         txtSearchBar.setValue(parameter);
     }
 
     private void search(){
         if(txtSearchBar.getValue() != null){
-            srList.refreshList(restClient.searchMovieByTitle(txtSearchBar.getValue()));
+            refreshList(restClient.searchMovieByTitle(txtSearchBar.getValue()));
+        }
+    }
+
+    public void refreshList(SearchResult result){
+        vlSearchResults.removeAll();
+        for(Search search: result.getSearch()){
+            MovieEntry movie = new MovieEntry(search);
+            vlSearchResults.add(movie);
         }
     }
 }
