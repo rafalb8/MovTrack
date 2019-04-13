@@ -57,24 +57,26 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         hlTitle.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
         vlInfo.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
-        hlTitle.setVerticalComponentAlignment(Alignment.END, btnWatch);
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
+        setHorizontalComponentAlignment(Alignment.START, btnWatch);
 
         hlMainInfo.add(imgPoster, vlInfo);
-        hlTitle.add(lblTitle, lblRated, btnWatch);
-        vlInfo.add(hlTitle, lblGenre, lblDirector, lblWriters, lblActors);
-        add(banner, hlMainInfo, lblPlot);
+        hlTitle.add(lblTitle);
+        vlInfo.add(hlTitle, lblRated, lblGenre, lblDirector, lblWriters, lblActors, lblPlot);
+        vlInfo.getElement().getStyle().set("background", "#E7EBEF");
+
+        add(banner, hlMainInfo, btnWatch);
     }
 
     private void refreshInfo(Movie movie){
         imgPoster.setSrc(movie.getPoster());
-        lblTitle.setText(movie.getTitle() + " (" + movie.getYear() +")");
-        lblRated.setText(movie.getRated());
-        lblGenre.setText("Genres: " + movie.getGenre());
-        lblDirector.setText("Director: " + movie.getDirector());
-        lblWriters.setText("Writers: " + movie.getWriter());
-        lblActors.setText("Actors: " + movie.getActors());
-        lblPlot.setText(movie.getPlot());
+        lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + " (" + movie.getYear() +")</h1>");
+        lblRated.getElement().setProperty("innerHTML","<h3>Rated: "+movie.getRated()+"</h3>");
+        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + movie.getGenre()+"</b>");
+        lblDirector.getElement().setProperty("innerHTML","<b>Director: " + movie.getDirector()+"</b>");
+        lblWriters.getElement().setProperty("innerHTML","<b>Writers: " + movie.getWriter()+"</b>");
+        lblActors.getElement().setProperty("innerHTML","<b>Actors: " + movie.getActors()+"</b>");
+        lblPlot.getElement().setProperty("innerHTML","<i>"+movie.getPlot()+"</i>");
     }
 
     @Override
