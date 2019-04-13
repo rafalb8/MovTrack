@@ -4,16 +4,17 @@ import com.movtrack.Banner;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.SearchResults;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 // View showing search results
 @Route("search")
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 public class SearchView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;

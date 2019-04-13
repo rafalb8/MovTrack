@@ -3,7 +3,6 @@ package com.movtrack.Views;
 import com.movtrack.Banner;
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
-import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -11,12 +10,12 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
-
-import javax.swing.text.html.HTML;
-import javax.swing.text.html.parser.ContentModel;
+import com.vaadin.flow.theme.Theme;
+import com.vaadin.flow.theme.lumo.Lumo;
 
 // View showing detailed movie information
 @Route("movie")
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 public class MovieView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;

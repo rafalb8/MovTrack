@@ -2,11 +2,8 @@ package com.movtrack.Views;
 
 import com.movtrack.Banner;
 import com.movtrack.WatchlistBar;
-import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -14,8 +11,8 @@ import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.theme.lumo.Lumo;
 
-@Theme(value = Lumo.class, variant = Lumo.DARK)
 @Route("")
+@Theme(value = Lumo.class, variant = Lumo.DARK)
 @PWA(name = "MovTrack - Track watched Movies and TV Shows", shortName = "MovTrack")
 public class MainView extends VerticalLayout {
 
