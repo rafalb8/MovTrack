@@ -6,7 +6,7 @@ import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.Search;
 import com.movtrack.RestClient.SearchResult;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEvent;
@@ -21,6 +21,7 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
     private Banner banner;
     private TextField txtSearchBar;
     private VerticalLayout vlSearchResults;
+    private Label lblEnd;
 
 
     public SearchView() {
@@ -28,9 +29,13 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
         banner = new Banner();
         txtSearchBar = new TextField();
         vlSearchResults = new VerticalLayout();
+        lblEnd = new Label();
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+        vlSearchResults.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
+        vlSearchResults.setHorizontalComponentAlignment(Alignment.CENTER, lblEnd);
 
         add(banner, txtSearchBar, vlSearchResults);
 
@@ -51,9 +56,19 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
 
     public void refreshList(SearchResult result){
         vlSearchResults.removeAll();
+
+        if(result.getSearch() == null){
+            lblEnd.setText("No results found");
+            vlSearchResults.add(lblEnd);
+            return;
+        }
+
         for(Search search: result.getSearch()){
             MovieEntry movie = new MovieEntry(search);
             vlSearchResults.add(movie);
         }
+
+        lblEnd.setText("End of results");
+        vlSearchResults.add(lblEnd);
     }
 }
