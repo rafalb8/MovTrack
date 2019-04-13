@@ -22,6 +22,7 @@ public class Banner extends HorizontalLayout {
         lblText = new Html(text);
         add(lblText);
         getElement().addEventListener("click", event -> click());
+        lblText.getElement().getStyle().set("background", "#ffffff");
     }
 
     // Click event
