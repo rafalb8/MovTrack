@@ -10,12 +10,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.theme.Theme;
-import com.vaadin.flow.theme.lumo.Lumo;
 
 // View showing detailed movie information
 @Route("movie")
-@Theme(value = Lumo.class, variant = Lumo.DARK)
 public class MovieView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;
