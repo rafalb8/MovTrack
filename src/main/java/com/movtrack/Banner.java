@@ -21,5 +21,12 @@ public class Banner extends HorizontalLayout {
         super();
         lblText = new Html(text);
         add(lblText);
+        getElement().addEventListener("click", event -> click());
+    }
+
+    // Click event
+    public void click() {
+        getUI().get().navigate(""); // Return home
+
     }
 }
