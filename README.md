@@ -19,7 +19,7 @@ MovieEntry      | Klasa wyświetlająca informacje o wyszukanym filmie
 WatchlistBar    | Klasa wyświetlająca listę filmów do obejrzenia
 WarchListButton | Przycisk do dodawania filmu do listy
 
-#Status
+# Status
  - [X] Szukanie filmów
  - [X] Wyświetlanie informacji o filmach
  - [X] Wyświetlanie zdjecie o filmu
