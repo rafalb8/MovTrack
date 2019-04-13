@@ -153,7 +153,11 @@
             <version>2.3.0</version>
         </dependency>
 
-
+        <!-- Icons -->
+        <dependency>
+            <groupId>com.vaadin</groupId>
+            <artifactId>vaadin-icons-flow</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
