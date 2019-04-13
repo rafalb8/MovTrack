@@ -2,8 +2,8 @@ package com.movtrack.Views;
 
 import com.movtrack.Banner;
 import com.movtrack.WatchlistBar;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -15,13 +15,13 @@ public class MainView extends VerticalLayout {
 
     private Banner banner;
     private TextField txtSearchBar;
-    private Label lblWatchList;
+    private Html lblWatchList;
     private WatchlistBar watchlistBar;
 
     public MainView() {
         banner = new Banner();
         txtSearchBar = new TextField("Search");
-        lblWatchList = new Label("WatchList");
+        lblWatchList = new Html("<h3>Watch List:</h3>");
         watchlistBar = new WatchlistBar();
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
