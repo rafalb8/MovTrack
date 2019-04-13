@@ -2,6 +2,7 @@ package com.movtrack.Views;
 
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -10,6 +11,7 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
+import javax.swing.text.html.HTML;
 import javax.swing.text.html.parser.ContentModel;
 
 // View showing detailed movie information
@@ -19,6 +21,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private RestClient restClient;
 
     // Design
+    private Html lblHome;
     private HorizontalLayout hlMainInfo;
     private VerticalLayout vlInfo;
     private HorizontalLayout hlTitle;
@@ -34,6 +37,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     public MovieView() {
         restClient = RestClient.getInstance();
 
+        lblHome = new Html("<h1>MovTrack</h1>");
         hlMainInfo = new HorizontalLayout();
         vlInfo = new VerticalLayout();
         hlTitle = new HorizontalLayout();
@@ -49,7 +53,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle, lblRated);
         vlInfo.add(hlTitle, lblGenre, lblDirector, lblWriters, lblActors);
-        add(hlMainInfo, lblPlot);
+        add(lblHome, hlMainInfo, lblPlot);
     }
 
     private void refreshInfo(Movie movie){
