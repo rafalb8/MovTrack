@@ -47,6 +47,8 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblActors = new Label();
         lblPlot = new Label();
 
+        imgPoster.setAlt("Image not found");
+
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle, lblRated);
         vlInfo.add(hlTitle, lblGenre, lblDirector, lblWriters, lblActors);

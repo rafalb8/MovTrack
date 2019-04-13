@@ -19,7 +19,7 @@ public class MovieEntry extends HorizontalLayout {
     public MovieEntry(Search movie) {
         this.movie = movie;
 
-        imgPoster = new Image(movie.getPoster(), "Error loading image");
+        imgPoster = new Image(movie.getPoster(), "Image not found");
         vlInfo = new VerticalLayout();
         lblTitle = new Label(movie.getTitle() + " (" + movie.getYear() +")");
         lblType = new Label(movie.getType().toUpperCase());
