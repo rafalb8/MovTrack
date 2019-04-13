@@ -3,6 +3,7 @@ package com.movtrack.Views;
 import com.movtrack.Banner;
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.WatchListButton;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -30,6 +31,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private Label lblWriters;
     private Label lblActors;
     private Label lblPlot;
+    private WatchListButton btnWatch;
 
     public MovieView() {
         restClient = RestClient.getInstance();
@@ -46,11 +48,20 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblWriters = new Label();
         lblActors = new Label();
         lblPlot = new Label();
+        btnWatch = new WatchListButton();
 
         imgPoster.setAlt("Image not found");
 
+        setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+        hlMainInfo.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
+        hlTitle.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
+        vlInfo.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+
+        hlTitle.setVerticalComponentAlignment(Alignment.END, btnWatch);
+        setHorizontalComponentAlignment(Alignment.CENTER, banner);
+
         hlMainInfo.add(imgPoster, vlInfo);
-        hlTitle.add(lblTitle, lblRated);
+        hlTitle.add(lblTitle, lblRated, btnWatch);
         vlInfo.add(hlTitle, lblGenre, lblDirector, lblWriters, lblActors);
         add(banner, hlMainInfo, lblPlot);
     }
