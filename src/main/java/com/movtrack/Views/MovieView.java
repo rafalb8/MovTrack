@@ -1,5 +1,6 @@
 package com.movtrack.Views;
 
+import com.movtrack.Banner;
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.vaadin.flow.component.Html;
@@ -21,7 +22,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private RestClient restClient;
 
     // Design
-    private Html lblHome;
+    private Banner banner;
     private HorizontalLayout hlMainInfo;
     private VerticalLayout vlInfo;
     private HorizontalLayout hlTitle;
@@ -37,7 +38,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     public MovieView() {
         restClient = RestClient.getInstance();
 
-        lblHome = new Html("<h1>MovTrack</h1>");
+        banner = new Banner();
         hlMainInfo = new HorizontalLayout();
         vlInfo = new VerticalLayout();
         hlTitle = new HorizontalLayout();
@@ -53,7 +54,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle, lblRated);
         vlInfo.add(hlTitle, lblGenre, lblDirector, lblWriters, lblActors);
-        add(lblHome, hlMainInfo, lblPlot);
+        add(banner, hlMainInfo, lblPlot);
     }
 
     private void refreshInfo(Movie movie){
