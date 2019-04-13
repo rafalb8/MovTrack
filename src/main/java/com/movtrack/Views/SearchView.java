@@ -1,5 +1,6 @@
 package com.movtrack.Views;
 
+import com.movtrack.Banner;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.SearchResults;
 import com.vaadin.flow.component.Key;
@@ -16,26 +17,23 @@ import com.vaadin.flow.router.Route;
 public class SearchView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;
-    private HorizontalLayout hlHeader;
-    private Label lblTitle;
+    private Banner banner;
     private TextField txtSearchBar;
     private SearchResults srList;
 
 
     public SearchView() {
         restClient = RestClient.getInstance();
-        hlHeader = new HorizontalLayout();
-        lblTitle = new Label("MovTrack");
+        banner = new Banner();
         txtSearchBar = new TextField();
         srList = new SearchResults();
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
+        setHorizontalComponentAlignment(Alignment.CENTER, banner);
 
         txtSearchBar.addKeyDownListener(Key.ENTER, event -> search());
 
-
-        hlHeader.add(lblTitle);
-        add(hlHeader, txtSearchBar, srList);
+        add(banner, txtSearchBar, srList);
 
     }
 
