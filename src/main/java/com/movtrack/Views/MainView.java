@@ -19,20 +19,22 @@ import com.vaadin.flow.theme.lumo.Lumo;
 @PWA(name = "MovTrack - Track watched Movies and TV Shows", shortName = "MovTrack")
 public class MainView extends VerticalLayout {
 
-    private WatchlistBar watchlistBar;
     private Banner banner;
     private TextField txtSearchBar;
+    private Label lblWatchList;
+    private WatchlistBar watchlistBar;
 
     public MainView() {
-        watchlistBar = new WatchlistBar();
         banner = new Banner();
         txtSearchBar = new TextField("Search");
+        lblWatchList = new Label("WatchList");
+        watchlistBar = new WatchlistBar();
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
 
         // Add components to Layout
-        add(banner, txtSearchBar, watchlistBar);
+        add(banner, txtSearchBar, lblWatchList, watchlistBar);
 
         txtSearchBar.addKeyDownListener(Key.ENTER, event -> search());
     }
