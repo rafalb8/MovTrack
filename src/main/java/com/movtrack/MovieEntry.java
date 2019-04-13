@@ -14,18 +14,21 @@ public class MovieEntry extends HorizontalLayout {
     private VerticalLayout vlInfo;
     private Label lblTitle;
     private Label lblType;
-
+    private WatchListButton btnWatch;
 
     public MovieEntry(Search movie) {
-        imgPoster = new Image(movie.getPoster(), movie.getPoster());
+        this.movie = movie;
+
+        imgPoster = new Image(movie.getPoster(), "Error loading image");
         vlInfo = new VerticalLayout();
         lblTitle = new Label(movie.getTitle() + " (" + movie.getYear() +")");
         lblType = new Label(movie.getType().toUpperCase());
-
+        btnWatch = new WatchListButton();
 
         vlInfo.add(lblTitle);
-        add(imgPoster, vlInfo, lblType);
-        this.movie = movie;
+        add(imgPoster, vlInfo, lblType, btnWatch);
+
+        setVerticalComponentAlignment(Alignment.END, btnWatch);
 
         getElement().addEventListener("click", event -> click());
     }
