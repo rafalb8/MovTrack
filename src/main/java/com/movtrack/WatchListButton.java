@@ -14,7 +14,7 @@ public class WatchListButton extends Button {
         super();
 
         // Add click listener
-        addClickListener(click -> refresh());   // TODO: replace refresh with clik event
+        addClickListener(click -> refresh());   // TODO: replace refresh with click event
 
         // Get status from watchlist
         boolWatched = false;
