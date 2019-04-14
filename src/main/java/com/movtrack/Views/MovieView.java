@@ -62,7 +62,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         vlInfo.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
-        setHorizontalComponentAlignment(Alignment.START, btnWatch);
+        setHorizontalComponentAlignment(Alignment.START, btnWatch, btnToWatch);
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
