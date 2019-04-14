@@ -9,12 +9,12 @@ public class ListButton extends Button {
     private final Icon icoAdd = new Icon(VaadinIcon.CHECK_SQUARE_O);
     private final Icon icoRemove = new Icon(VaadinIcon.CHECK_SQUARE);
     private boolean boolAdded;
-    private String strList;
+    private ListType listType;
 
-    public ListButton(String listName) {
+    public ListButton(ListType type) {
         super();
 
-        strList = listName;
+        listType = type;
 
         // Add click listener
         addClickListener(click -> refresh());   // TODO: replace refresh with click event
@@ -28,10 +28,18 @@ public class ListButton extends Button {
     private void refresh(){
         if(!boolAdded){
             setIcon(icoAdd);
-            setText("Add Movie to " + strList);
+            if(listType != ListType.Watched) {
+                setText("Add Movie to " + listType.toString());
+            } else {
+                setText(listType.toString());
+            }
         } else {
             setIcon(icoRemove);
-            setText("Remove Movie from " + strList);
+            if(listType != ListType.Watched) {
+                setText("Remove Movie from " + listType.toString());
+            } else {
+                setText(listType.toString());
+            }
         }
 
         boolAdded = !boolAdded;
