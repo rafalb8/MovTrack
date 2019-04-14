@@ -1,6 +1,7 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
+import com.movtrack.ListType;
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.ListButton;
@@ -48,7 +49,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblWriters = new Label();
         lblActors = new Label();
         lblPlot = new Label();
-        btnWatch = new ListButton();
+        btnWatch = new ListButton(ListType.WatchList);
 
         imgPoster.setAlt("Image not found");
 

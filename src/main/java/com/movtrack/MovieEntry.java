@@ -23,7 +23,7 @@ public class MovieEntry extends HorizontalLayout {
         vlInfo = new VerticalLayout();
         lblTitle = new Html("<h1>"+movie.getTitle() + " (" + movie.getYear() +")</h1>");
         lblType = new Html("<h2>"+movie.getType().toUpperCase()+"</h2>");
-        btnWatch = new ListButton();
+        btnWatch = new ListButton(ListType.WatchList);
 
         vlInfo.add(lblTitle, lblType, btnWatch);
         add(imgPoster, vlInfo);
