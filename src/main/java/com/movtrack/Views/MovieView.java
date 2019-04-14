@@ -33,6 +33,8 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private Label lblActors;
     private Label lblPlot;
     private ListButton btnWatch;
+    private ListButton btnToWatch;
+
 
     public MovieView() {
         restClient = RestClient.getInstance();
@@ -49,7 +51,8 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblWriters = new Label();
         lblActors = new Label();
         lblPlot = new Label();
-        btnWatch = new ListButton(ListType.WatchList);
+        btnWatch = new ListButton(ListType.Watched);
+        btnToWatch = new ListButton(ListType.WatchList);
 
         imgPoster.setAlt("Image not found");
 
@@ -66,7 +69,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         vlInfo.add(hlTitle, lblRated, lblGenre, lblDirector, lblWriters, lblActors, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
-        add(banner, hlMainInfo, btnWatch);
+        add(banner, hlMainInfo, btnWatch, btnToWatch);
     }
 
     private void refreshInfo(Movie movie){
