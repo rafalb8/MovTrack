@@ -5,32 +5,35 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 
 // Button to add/remove movie to WatchList
-public class WatchListButton extends Button {
+public class ListButton extends Button {
     private final Icon icoAdd = new Icon(VaadinIcon.CHECK_SQUARE_O);
     private final Icon icoRemove = new Icon(VaadinIcon.CHECK_SQUARE);
-    private boolean boolWatched;
+    private boolean boolAdded;
+    private String strList;
 
-    public WatchListButton() {
+    public ListButton(String listName) {
         super();
+
+        strList = listName;
 
         // Add click listener
         addClickListener(click -> refresh());   // TODO: replace refresh with click event
 
         // Get status from watchlist
-        boolWatched = false;
+        boolAdded = false;
 
         refresh();
     }
 
     private void refresh(){
-        if(!boolWatched){
+        if(!boolAdded){
             setIcon(icoAdd);
-            setText("Add Movie");
+            setText("Add Movie to " + strList);
         } else {
             setIcon(icoRemove);
-            setText("Remove Movie");
+            setText("Remove Movie from " + strList);
         }
 
-        boolWatched = !boolWatched;
+        boolAdded = !boolAdded;
     }
 }

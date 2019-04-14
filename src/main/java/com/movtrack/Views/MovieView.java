@@ -3,7 +3,7 @@ package com.movtrack.Views;
 import com.movtrack.Banner;
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
-import com.movtrack.WatchListButton;
+import com.movtrack.ListButton;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -31,7 +31,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private Label lblWriters;
     private Label lblActors;
     private Label lblPlot;
-    private WatchListButton btnWatch;
+    private ListButton btnWatch;
 
     public MovieView() {
         restClient = RestClient.getInstance();
@@ -48,7 +48,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblWriters = new Label();
         lblActors = new Label();
         lblPlot = new Label();
-        btnWatch = new WatchListButton();
+        btnWatch = new ListButton();
 
         imgPoster.setAlt("Image not found");
 
