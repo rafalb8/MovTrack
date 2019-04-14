@@ -3,7 +3,6 @@ package com.movtrack;
 import com.movtrack.RestClient.Search;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
@@ -15,7 +14,8 @@ public class MovieEntry extends HorizontalLayout {
     private VerticalLayout vlInfo;
     private Html lblTitle;
     private Html lblType;
-    private WatchListButton btnWatch;
+    private ListButton btnWatch;
+    private ListButton btnToWatch;
 
     public MovieEntry(Search movie) {
         this.movie = movie;
@@ -24,9 +24,10 @@ public class MovieEntry extends HorizontalLayout {
         vlInfo = new VerticalLayout();
         lblTitle = new Html("<h1>"+movie.getTitle() + " (" + movie.getYear() +")</h1>");
         lblType = new Html("<h2>"+movie.getType().toUpperCase()+"</h2>");
-        btnWatch = new WatchListButton();
+        btnWatch = new ListButton(ListType.Watched);
+        btnToWatch = new ListButton(ListType.WatchList);
 
-        vlInfo.add(lblTitle, lblType, btnWatch);
+        vlInfo.add(lblTitle, lblType, btnWatch, btnToWatch);
         add(imgPoster, vlInfo);
 
         imgPoster.getElement().addEventListener("click", event -> click());

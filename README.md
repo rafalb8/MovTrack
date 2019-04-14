@@ -17,18 +17,18 @@ Views           | Ułożenia przycisków na stronie
 Banner          | Klasa wyświetlająca Banner strony
 MovieEntry      | Klasa wyświetlająca informacje o wyszukanym filmie
 WatchlistBar    | Klasa wyświetlająca listę filmów do obejrzenia
-WarchListButton | Przycisk do dodawania filmu do listy
+ListButton      | Przycisk do dodawania filmu do listy
 
 # Status
  - [X] Szukanie filmów
  - [X] Wyświetlanie informacji o filmach
- - [X] Wyświetlanie zdjecie o filmu
- - [ ] Dodawanie do listy do obejrzenia
- - [ ] Zapisywanie listy
+ - [X] Wyświetlanie zdjecie filmu
+ - [ ] Dodawanie do listy obejrzanych/do obejrzenia
+ - [ ] Zapisywanie stanu listy
 
 # Start
-Aby otworzyć projekt, wystarczy otworzyć wybranym środowisku progrmaistycznym (**_Najlepiej IDEA_**)
-plik *pom.xml*
+Aby otworzyć projekt, wystarczy otworzyć wybranym środowisku progrmaistycznym (**_Najlepiej IntelliJ IDEA_**)
+plik `pom.xml`
 
 # Uruchomienie Aplikacji
 Po zbudowaniu aplikacji, wystarczy uruchomić web serwer Jetty przez plugin Maven'a:

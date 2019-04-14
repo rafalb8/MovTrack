@@ -1,9 +1,10 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
+import com.movtrack.ListType;
 import com.movtrack.RestClient.Movie;
 import com.movtrack.RestClient.RestClient;
-import com.movtrack.WatchListButton;
+import com.movtrack.ListButton;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -31,7 +32,9 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private Label lblWriters;
     private Label lblActors;
     private Label lblPlot;
-    private WatchListButton btnWatch;
+    private ListButton btnWatch;
+    private ListButton btnToWatch;
+
 
     public MovieView() {
         restClient = RestClient.getInstance();
@@ -48,7 +51,8 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblWriters = new Label();
         lblActors = new Label();
         lblPlot = new Label();
-        btnWatch = new WatchListButton();
+        btnWatch = new ListButton(ListType.Watched);
+        btnToWatch = new ListButton(ListType.WatchList);
 
         imgPoster.setAlt("Image not found");
 
@@ -58,14 +62,14 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         vlInfo.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
-        setHorizontalComponentAlignment(Alignment.START, btnWatch);
+        setHorizontalComponentAlignment(Alignment.START, btnWatch, btnToWatch);
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
         vlInfo.add(hlTitle, lblRated, lblGenre, lblDirector, lblWriters, lblActors, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
-        add(banner, hlMainInfo, btnWatch);
+        add(banner, hlMainInfo, btnWatch, btnToWatch);
     }
 
     private void refreshInfo(Movie movie){
