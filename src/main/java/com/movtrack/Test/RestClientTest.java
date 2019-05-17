@@ -3,7 +3,7 @@ package com.movtrack.Test;
 import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.Search.Search;
-import com.movtrack.RestClient.TV.TV;
+import com.movtrack.RestClient.TV.TvShow;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,7 +25,7 @@ class RestClientTest {
 
     @Test
     void tvShowByIdRequest(){
-        TV m = restClient.getTVShowByID("63926");
+        TvShow m = restClient.getTVShowByID("63926");
 
         assertEquals("One-Punch Man", m.getName(), "Incorrect name");
     }

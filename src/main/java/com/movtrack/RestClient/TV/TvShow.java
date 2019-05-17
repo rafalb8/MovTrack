@@ -42,7 +42,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "vote_average",
     "vote_count"
 })
-public class TV {
+public class TvShow {
 
     @JsonProperty("backdrop_path")
     private String backdropPath;

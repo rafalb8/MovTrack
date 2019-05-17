@@ -10,7 +10,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
 @Route("")
-@PWA(name = "MovTrack - Track watched Movies and TV Shows", shortName = "MovTrack")
+@PWA(name = "MovTrack - Track watched Movies and TvShow Shows", shortName = "MovTrack")
 public class MainView extends VerticalLayout {
 
     private Banner banner;

@@ -2,7 +2,7 @@ package com.movtrack.RestClient;
 
 import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.Search.Search;
-import com.movtrack.RestClient.TV.TV;
+import com.movtrack.RestClient.TV.TvShow;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -37,8 +37,8 @@ public class RestClient {
         return webtarget.path("/movie/" + id).request(MediaType.APPLICATION_JSON).get(Movie.class);
     }
 
-    public TV getTVShowByID(String id){
-        return webtarget.path("/tv/" + id).request(MediaType.APPLICATION_JSON).get(TV.class);
+    public TvShow getTVShowByID(String id){
+        return webtarget.path("/tv/" + id).request(MediaType.APPLICATION_JSON).get(TvShow.class);
     }
 
     public Search searchByTitle(String title){
