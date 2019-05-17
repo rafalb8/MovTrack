@@ -46,8 +46,6 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         btnWatch = new ListButton(ListType.Watched);
         btnToWatch = new ListButton(ListType.WatchList);
 
-        imgPoster.setAlt("Image not found");
-
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         hlMainInfo.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
         hlTitle.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
@@ -65,7 +63,12 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     }
 
     private void refreshInfo(Movie movie){
-        imgPoster.setSrc(movie.getPosterPath());
+        if(movie.getPosterPath() == null){
+            imgPoster.setSrc("poster.png");
+        } else {
+            imgPoster.setSrc("https://image.tmdb.org/t/p/w300" + movie.getPosterPath());
+        }
+
         lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + " (" + movie.getReleaseDate() +")</h1>");
         lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + movie.getGenres().get(0).getName()+"</b>");
         lblPlot.getElement().setProperty("innerHTML","<i>"+movie.getOverview()+"</i>");
