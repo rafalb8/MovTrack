@@ -9,7 +9,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 // Class representing entry in searched movies list
 public class SearchResultEntry extends HorizontalLayout {
-    private Result movie;
+    private Result result;
     private Image imgPoster;
     private VerticalLayout vlInfo;
     private Html lblTitle;
@@ -18,7 +18,7 @@ public class SearchResultEntry extends HorizontalLayout {
     private ListButton btnToWatch;
 
     public SearchResultEntry(Result result) {
-        this.movie = result;
+        this.result = result;
         vlInfo = new VerticalLayout();
 
         if (result.getPosterPath() == null) {
@@ -45,8 +45,12 @@ public class SearchResultEntry extends HorizontalLayout {
         lblType.getElement().addEventListener("click", event -> click());
     }
 
-    // Change view to MovieView
+    // Change view to MovieView or TvShowView
     public void click() {
-        getUI().ifPresent(ui -> ui.navigate("movie/" + movie.getId()));
+        if(result.getMediaType().equals("tv")){
+            getUI().ifPresent(ui -> ui.navigate("tv/" + result.getId()));
+        } else {
+            getUI().ifPresent(ui -> ui.navigate("movie/" + result.getId()));
+        }
     }
 }

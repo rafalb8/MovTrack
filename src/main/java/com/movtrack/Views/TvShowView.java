@@ -5,6 +5,7 @@ import com.movtrack.ListType;
 import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.ListButton;
+import com.movtrack.RestClient.TV.TvShow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -13,9 +14,9 @@ import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
 
-// View showing detailed movie information
-@Route("movie")
-public class MovieView extends VerticalLayout implements HasUrlParameter<String> {
+// View showing detailed tv show information
+@Route("tv")
+public class TvShowView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;
 
@@ -32,7 +33,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private ListButton btnToWatch;
 
 
-    public MovieView() {
+    public TvShowView() {
         restClient = RestClient.getInstance();
 
         banner = new Banner();
@@ -45,8 +46,6 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblPlot = new Label();
         btnWatch = new ListButton(ListType.Watched);
         btnToWatch = new ListButton(ListType.WatchList);
-
-        imgPoster.setAlt("Image not found");
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         hlMainInfo.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
@@ -64,16 +63,21 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         add(banner, hlMainInfo, btnWatch, btnToWatch);
     }
 
-    private void refreshInfo(Movie movie){
-        imgPoster.setSrc(movie.getPosterPath());
-        lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + " (" + movie.getReleaseDate() +")</h1>");
-        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + movie.getGenres().get(0).getName()+"</b>");
-        lblPlot.getElement().setProperty("innerHTML","<i>"+movie.getOverview()+"</i>");
+    private void refreshInfo(TvShow tvShow){
+        if(tvShow.getPosterPath() == null){
+            imgPoster.setSrc("poster.png");
+        } else {
+            imgPoster.setSrc("https://image.tmdb.org/t/p/w300" + tvShow.getPosterPath());
+        }
+
+        lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + " (" + tvShow.getFirstAirDate() +")</h1>");
+        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + tvShow.getGenres().get(0).getName()+"</b>");
+        lblPlot.getElement().setProperty("innerHTML","<i>"+tvShow.getOverview()+"</i>");
     }
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
         // Get info by id
-        refreshInfo(restClient.getMovieByID(parameter));
+        refreshInfo(restClient.getTVShowByID(parameter));
     }
 }
