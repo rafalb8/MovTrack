@@ -1,8 +1,11 @@
 package com.movtrack.Test;
 
-import com.movtrack.RestClient.Movie;
-import com.movtrack.RestClient.SearchResult;
+import com.movtrack.RestClient.Movie.Movie;
+import com.movtrack.RestClient.Movie.Recommendation.MovieRecommendations;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.RestClient.Search.Search;
+import com.movtrack.RestClient.TV.Recommendation.TvShowRecommendations;
+import com.movtrack.RestClient.TV.TvShow;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,16 +19,38 @@ class RestClientTest {
     }
 
     @Test
-    void idRequest(){
-        Movie m = restClient.getMovieByID("tt3896198");
+    void movieByIdRequest(){
+        Movie m = restClient.getMovieByID("550");
 
-        assertEquals("Guardians of the Galaxy Vol. 2", m.getTitle(), "Incorrect title");
+        assertEquals("Fight Club", m.getTitle(), "Incorrect title");
     }
 
     @Test
-    void searchRequest() {
-        SearchResult s = restClient.searchMovieByTitle("avengers");
+    void tvShowByIdRequest(){
+        TvShow m = restClient.getTVShowByID("63926");
 
-        assertEquals("The Avengers", s.getSearch().get(0).getTitle() , "Incorrect title");
+        assertEquals("One-Punch Man", m.getName(), "Incorrect name");
+    }
+
+    @Test
+    void searchRequest(){
+        Search s = restClient.searchByTitle("avengers");
+
+        assertNotNull(s.getResults(),"Search is empty");
+        assertEquals("Avengers: Endgame", s.getResults().get(0).getTitle() , "Incorrect title");
+    }
+
+    @Test
+    void movieRecommendationRequest(){
+        MovieRecommendations mr = restClient.getMovieRecommendations("550");
+        assertNotNull(mr.getResults(),"No recommendations");
+        assertEquals("Pulp Fiction", mr.getResults().get(0).getTitle() , "Incorrect title");
+    }
+
+    @Test
+    void tvShowRecommendationRequest(){
+        TvShowRecommendations tvr = restClient.getTvShowRecommendations("63926");
+        assertNotNull(tvr.getResults(),"No recommendations");
+        assertEquals("Fullmetal Alchemist: Brotherhood", tvr.getResults().get(0).getName() , "Incorrect title");
     }
 }
