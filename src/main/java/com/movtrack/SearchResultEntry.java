@@ -1,5 +1,7 @@
 package com.movtrack;
 
+import com.movtrack.List.ListButton;
+import com.movtrack.List.ListType;
 import com.movtrack.RestClient.Search.Result;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Image;

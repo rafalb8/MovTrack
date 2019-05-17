@@ -1,4 +1,4 @@
-package com.movtrack;
+package com.movtrack.List;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.Icon;

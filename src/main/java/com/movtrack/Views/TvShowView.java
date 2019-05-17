@@ -1,10 +1,9 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
-import com.movtrack.ListType;
-import com.movtrack.RestClient.Movie.Movie;
+import com.movtrack.List.ListType;
 import com.movtrack.RestClient.RestClient;
-import com.movtrack.ListButton;
+import com.movtrack.List.ListButton;
 import com.movtrack.RestClient.TV.TvShow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
