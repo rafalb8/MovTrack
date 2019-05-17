@@ -41,7 +41,6 @@ public class SearchResultEntry extends HorizontalLayout {
 
     // Change view to MovieView
     public void click() {
-        getUI().get().navigate("movie/" + movie.getId());
-
+        getUI().ifPresent(ui -> ui.navigate("movie/" + movie.getId()));
     }
 }
