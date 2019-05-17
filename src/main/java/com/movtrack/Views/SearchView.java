@@ -1,10 +1,10 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
-import com.movtrack.MovieEntry;
+import com.movtrack.SearchedMovieEntry;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.RestClient.Result;
 import com.movtrack.RestClient.Search;
-import com.movtrack.RestClient.SearchResult;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -54,17 +54,17 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
         }
     }
 
-    public void refreshList(SearchResult result){
+    public void refreshList(Search search){
         vlSearchResults.removeAll();
 
-        if(result.getSearch() == null){
+        if(search.getResults() == null){
             lblEnd.setText("No results found");
             vlSearchResults.add(lblEnd);
             return;
         }
 
-        for(Search search: result.getSearch()){
-            MovieEntry movie = new MovieEntry(search);
+        for(Result result: search.getResults()){
+            SearchedMovieEntry movie = new SearchedMovieEntry(result);
             vlSearchResults.add(movie);
         }
 

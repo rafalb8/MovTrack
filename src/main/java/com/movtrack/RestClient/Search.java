@@ -1,6 +1,7 @@
 package com.movtrack.RestClient;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
@@ -11,75 +12,62 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "Title",
-    "Year",
-    "imdbID",
-    "Type",
-    "Poster"
+    "page",
+    "total_results",
+    "total_pages",
+    "results"
 })
 public class Search {
 
-    @JsonProperty("Title")
-    private String title;
-    @JsonProperty("Year")
-    private String year;
-    @JsonProperty("imdbID")
-    private String imdbID;
-    @JsonProperty("Type")
-    private String type;
-    @JsonProperty("Poster")
-    private String poster;
+    @JsonProperty("page")
+    private Integer page;
+    @JsonProperty("total_results")
+    private Integer totalResults;
+    @JsonProperty("total_pages")
+    private Integer totalPages;
+    @JsonProperty("results")
+    private List<Result> results = null;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<>();
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("Title")
-    public String getTitle() {
-        return title;
+    @JsonProperty("page")
+    public Integer getPage() {
+        return page;
     }
 
-    @JsonProperty("Title")
-    public void setTitle(String title) {
-        this.title = title;
+    @JsonProperty("page")
+    public void setPage(Integer page) {
+        this.page = page;
     }
 
-    @JsonProperty("Year")
-    public String getYear() {
-        return year;
+    @JsonProperty("total_results")
+    public Integer getTotalResults() {
+        return totalResults;
     }
 
-    @JsonProperty("Year")
-    public void setYear(String year) {
-        this.year = year;
+    @JsonProperty("total_results")
+    public void setTotalResults(Integer totalResults) {
+        this.totalResults = totalResults;
     }
 
-    @JsonProperty("imdbID")
-    public String getImdbID() {
-        return imdbID;
+    @JsonProperty("total_pages")
+    public Integer getTotalPages() {
+        return totalPages;
     }
 
-    @JsonProperty("imdbID")
-    public void setImdbID(String imdbID) {
-        this.imdbID = imdbID;
+    @JsonProperty("total_pages")
+    public void setTotalPages(Integer totalPages) {
+        this.totalPages = totalPages;
     }
 
-    @JsonProperty("Type")
-    public String getType() {
-        return type;
+    @JsonProperty("results")
+    public List<Result> getResults() {
+        return results;
     }
 
-    @JsonProperty("Type")
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    @JsonProperty("Poster")
-    public String getPoster() {
-        return poster;
-    }
-
-    @JsonProperty("Poster")
-    public void setPoster(String poster) {
-        this.poster = poster;
+    @JsonProperty("results")
+    public void setResults(List<Result> results) {
+        this.results = results;
     }
 
     @JsonAnyGetter

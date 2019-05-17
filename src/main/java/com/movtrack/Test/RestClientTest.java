@@ -1,8 +1,8 @@
 package com.movtrack.Test;
 
 import com.movtrack.RestClient.Movie;
-import com.movtrack.RestClient.SearchResult;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.RestClient.Search;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,15 +17,15 @@ class RestClientTest {
 
     @Test
     void idRequest(){
-        Movie m = restClient.getMovieByID("tt3896198");
+        Movie m = restClient.getMovieByID("550");
 
-        assertEquals("Guardians of the Galaxy Vol. 2", m.getTitle(), "Incorrect title");
+        assertEquals("Fight Club", m.getTitle(), "Incorrect title");
     }
 
     @Test
     void searchRequest() {
-        SearchResult s = restClient.searchMovieByTitle("avengers");
-
-        assertEquals("The Avengers", s.getSearch().get(0).getTitle() , "Incorrect title");
+        Search s = restClient.searchMovieByTitle("avengers");
+        assertNotNull(s.getResults(),"Search is empty");
+        assertEquals("Avengers: Endgame", s.getResults().get(0).getTitle() , "Incorrect title");
     }
 }

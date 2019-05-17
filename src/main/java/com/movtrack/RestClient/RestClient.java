@@ -19,7 +19,7 @@ public class RestClient {
 
     private RestClient(){
         client = ClientBuilder.newClient();
-        webtarget = client.target("http://www.omdbapi.com/").queryParam("apikey", "b45ac754");
+        webtarget = client.target("https://api.themoviedb.org/3").queryParam("api_key", "300a820bd8fc751e731843bb6e5a22d4");
     }
 
     public static RestClient getInstance(){
@@ -29,16 +29,12 @@ public class RestClient {
         return singleton;
     }
 
-    public Movie getMovieByTitle(String param){
-        return webtarget.queryParam("t", param).request(MediaType.APPLICATION_JSON).get(Movie.class);
-    }
-
     public Movie getMovieByID(String param){
-        return webtarget.queryParam("i", param).request(MediaType.APPLICATION_JSON).get(Movie.class);
+        return webtarget.path("/movie/" + param).request(MediaType.APPLICATION_JSON).get(Movie.class);
     }
 
-    public SearchResult searchMovieByTitle(String param){
-        return webtarget.queryParam("s", param).request(MediaType.APPLICATION_JSON).get(SearchResult.class);
+    public Search searchMovieByTitle(String param){
+        return webtarget.path("/search/multi").queryParam("query", param).request(MediaType.APPLICATION_JSON).get(Search.class);
     }
 
 }

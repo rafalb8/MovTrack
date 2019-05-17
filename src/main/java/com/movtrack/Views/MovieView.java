@@ -28,9 +28,6 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private Label lblTitle;
     private Label lblRated;
     private Label lblGenre;
-    private Label lblDirector;
-    private Label lblWriters;
-    private Label lblActors;
     private Label lblPlot;
     private ListButton btnWatch;
     private ListButton btnToWatch;
@@ -47,9 +44,6 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         lblTitle = new Label();
         lblRated = new Label();
         lblGenre = new Label();
-        lblDirector = new Label();
-        lblWriters = new Label();
-        lblActors = new Label();
         lblPlot = new Label();
         btnWatch = new ListButton(ListType.Watched);
         btnToWatch = new ListButton(ListType.WatchList);
@@ -66,21 +60,18 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
-        vlInfo.add(hlTitle, lblRated, lblGenre, lblDirector, lblWriters, lblActors, lblPlot);
+        vlInfo.add(hlTitle, lblRated, lblGenre, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
         add(banner, hlMainInfo, btnWatch, btnToWatch);
     }
 
     private void refreshInfo(Movie movie){
-        imgPoster.setSrc(movie.getPoster());
-        lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + " (" + movie.getYear() +")</h1>");
-        lblRated.getElement().setProperty("innerHTML","<h3>Rated: "+movie.getRated()+"</h3>");
-        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + movie.getGenre()+"</b>");
-        lblDirector.getElement().setProperty("innerHTML","<b>Director: " + movie.getDirector()+"</b>");
-        lblWriters.getElement().setProperty("innerHTML","<b>Writers: " + movie.getWriter()+"</b>");
-        lblActors.getElement().setProperty("innerHTML","<b>Actors: " + movie.getActors()+"</b>");
-        lblPlot.getElement().setProperty("innerHTML","<i>"+movie.getPlot()+"</i>");
+        imgPoster.setSrc(movie.getPosterPath());
+        lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + " (" + movie.getReleaseDate() +")</h1>");
+        lblRated.getElement().setProperty("innerHTML","<h3>Rated: "+movie.getAdult()+"</h3>");
+        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + movie.getGenres().get(0).getName()+"</b>");
+        lblPlot.getElement().setProperty("innerHTML","<i>"+movie.getOverview()+"</i>");
     }
 
     @Override
