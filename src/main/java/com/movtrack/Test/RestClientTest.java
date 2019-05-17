@@ -24,7 +24,7 @@ class RestClientTest {
 
     @Test
     void searchRequest() {
-        Search s = restClient.searchMovieByTitle("avengers");
+        Search s = restClient.searchByTitle("avengers");
         assertNotNull(s.getResults(),"Search is empty");
         assertEquals("Avengers: Endgame", s.getResults().get(0).getTitle() , "Incorrect title");
     }

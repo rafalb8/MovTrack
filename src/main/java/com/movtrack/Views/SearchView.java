@@ -44,13 +44,13 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
-        refreshList(restClient.searchMovieByTitle(parameter));
+        refreshList(restClient.searchByTitle(parameter));
         txtSearchBar.setValue(parameter);
     }
 
     private void search(){
         if(txtSearchBar.getValue() != null){
-            refreshList(restClient.searchMovieByTitle(txtSearchBar.getValue()));
+            refreshList(restClient.searchByTitle(txtSearchBar.getValue()));
         }
     }
 
