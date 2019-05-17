@@ -1,4 +1,4 @@
-package com.movtrack.RestClient;
+package com.movtrack.RestClient.Movie;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,36 +11,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "Source",
-    "Value"
+    "id",
+    "name"
 })
-public class Rating {
+public class Genre {
 
-    @JsonProperty("Source")
-    private String source;
-    @JsonProperty("Value")
-    private String value;
+    @JsonProperty("id")
+    private Integer id;
+    @JsonProperty("name")
+    private String name;
     @JsonIgnore
-    private Map<String, Object> additionalProperties = new HashMap<>();
+    private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("Source")
-    public String getSource() {
-        return source;
+    @JsonProperty("id")
+    public Integer getId() {
+        return id;
     }
 
-    @JsonProperty("Source")
-    public void setSource(String source) {
-        this.source = source;
+    @JsonProperty("id")
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    @JsonProperty("Value")
-    public String getValue() {
-        return value;
+    @JsonProperty("name")
+    public String getName() {
+        return name;
     }
 
-    @JsonProperty("Value")
-    public void setValue(String value) {
-        this.value = value;
+    @JsonProperty("name")
+    public void setName(String name) {
+        this.name = name;
     }
 
     @JsonAnyGetter

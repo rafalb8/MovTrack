@@ -1,4 +1,4 @@
-package com.movtrack.RestClient;
+package com.movtrack.RestClient.Search;
 
 import java.util.HashMap;
 import java.util.List;

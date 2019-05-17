@@ -1,4 +1,4 @@
-package com.movtrack.RestClient;
+package com.movtrack.RestClient.Movie;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,26 +11,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
-    "id",
+    "iso_639_1",
     "name"
 })
-public class Genre {
+public class SpokenLanguage {
 
-    @JsonProperty("id")
-    private Integer id;
+    @JsonProperty("iso_639_1")
+    private String iso6391;
     @JsonProperty("name")
     private String name;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-    @JsonProperty("id")
-    public Integer getId() {
-        return id;
+    @JsonProperty("iso_639_1")
+    public String getIso6391() {
+        return iso6391;
     }
 
-    @JsonProperty("id")
-    public void setId(Integer id) {
-        this.id = id;
+    @JsonProperty("iso_639_1")
+    public void setIso6391(String iso6391) {
+        this.iso6391 = iso6391;
     }
 
     @JsonProperty("name")

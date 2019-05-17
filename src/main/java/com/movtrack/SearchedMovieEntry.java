@@ -1,6 +1,6 @@
 package com.movtrack;
 
-import com.movtrack.RestClient.Result;
+import com.movtrack.RestClient.Search.Result;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;

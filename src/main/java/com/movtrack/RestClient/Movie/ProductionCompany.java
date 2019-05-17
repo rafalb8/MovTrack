@@ -1,4 +1,4 @@
-package com.movtrack.RestClient;
+package com.movtrack.RestClient.Movie;
 
 import java.util.HashMap;
 import java.util.Map;

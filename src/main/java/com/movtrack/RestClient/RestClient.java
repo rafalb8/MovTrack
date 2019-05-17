@@ -1,5 +1,7 @@
 package com.movtrack.RestClient;
 
+import com.movtrack.RestClient.Movie.Movie;
+import com.movtrack.RestClient.Search.Search;
 import com.movtrack.RestClient.TV.TV;
 
 import javax.ws.rs.client.Client;

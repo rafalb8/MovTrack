@@ -2,7 +2,7 @@ package com.movtrack.Views;
 
 import com.movtrack.Banner;
 import com.movtrack.ListType;
-import com.movtrack.RestClient.Movie;
+import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.ListButton;
 import com.vaadin.flow.component.html.Image;
