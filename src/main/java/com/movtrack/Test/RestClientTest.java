@@ -1,8 +1,10 @@
 package com.movtrack.Test;
 
 import com.movtrack.RestClient.Movie.Movie;
+import com.movtrack.RestClient.Movie.Recommendation.MovieRecommendations;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.Search.Search;
+import com.movtrack.RestClient.TV.Recommendation.TvShowRecommendations;
 import com.movtrack.RestClient.TV.TvShow;
 import org.junit.jupiter.api.Test;
 
@@ -31,10 +33,24 @@ class RestClientTest {
     }
 
     @Test
-    void searchRequest() {
+    void searchRequest(){
         Search s = restClient.searchByTitle("avengers");
 
         assertNotNull(s.getResults(),"Search is empty");
         assertEquals("Avengers: Endgame", s.getResults().get(0).getTitle() , "Incorrect title");
+    }
+
+    @Test
+    void movieRecommendationRequest(){
+        MovieRecommendations mr = restClient.getMovieRecommendations("550");
+        assertNotNull(mr.getResults(),"No recommendations");
+        assertEquals("Pulp Fiction", mr.getResults().get(0).getTitle() , "Incorrect title");
+    }
+
+    @Test
+    void tvShowRecommendationRequest(){
+        TvShowRecommendations tvr = restClient.getTvShowRecommendations("63926");
+        assertNotNull(tvr.getResults(),"No recommendations");
+        assertEquals("Fullmetal Alchemist: Brotherhood", tvr.getResults().get(0).getName() , "Incorrect title");
     }
 }
