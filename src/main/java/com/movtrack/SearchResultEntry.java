@@ -8,7 +8,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 
 // Class representing entry in searched movies list
-public class SearchedMovieEntry extends HorizontalLayout {
+public class SearchResultEntry extends HorizontalLayout {
     private Result movie;
     private Image imgPoster;
     private VerticalLayout vlInfo;
@@ -17,13 +17,17 @@ public class SearchedMovieEntry extends HorizontalLayout {
     private ListButton btnWatch;
     private ListButton btnToWatch;
 
-    public SearchedMovieEntry(Result movie) {
-        this.movie = movie;
+    public SearchResultEntry(Result result) {
+        this.movie = result;
 
-        imgPoster = new Image(movie.getPosterPath(), "Image not found");
+        imgPoster = new Image("https://image.tmdb.org/t/p/w300" + result.getPosterPath(), "poster.png");
         vlInfo = new VerticalLayout();
-        lblTitle = new Html("<h1>"+movie.getTitle() + " (" + movie.getReleaseDate() +")</h1>");
-        lblType = new Html("<h2>"+movie.getMediaType().toUpperCase()+"</h2>");
+        if(result.getMediaType().equals("tv")) {
+            lblTitle = new Html("<h1>" + result.getName() + " (" + result.getFirstAirDate() + ")</h1>");
+        } else {
+            lblTitle = new Html("<h1>" + result.getTitle() + " (" + result.getReleaseDate() + ")</h1>");
+        }
+        lblType = new Html("<h2>"+result.getMediaType().toUpperCase()+"</h2>");
         btnWatch = new ListButton(ListType.Watched);
         btnToWatch = new ListButton(ListType.WatchList);
 

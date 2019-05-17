@@ -10,7 +10,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.PWA;
 
 @Route("")
-@PWA(name = "MovTrack - Track watched Movies and TvShow Shows", shortName = "MovTrack")
+@PWA(name = "MovTrack - Track watched Movies and Tv Shows", shortName = "MovTrack")
 public class MainView extends VerticalLayout {
 
     private Banner banner;
@@ -34,6 +34,6 @@ public class MainView extends VerticalLayout {
     }
 
     private void search(){
-        getUI().get().navigate("search/" + txtSearchBar.getValue());
+        getUI().ifPresent(ui -> ui.navigate("search/" + txtSearchBar.getValue()));
     }
 }

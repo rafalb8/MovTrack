@@ -1,7 +1,7 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
-import com.movtrack.SearchedMovieEntry;
+import com.movtrack.SearchResultEntry;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.Search.Result;
 import com.movtrack.RestClient.Search.Search;
@@ -64,7 +64,7 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
         }
 
         for(Result result: search.getResults()){
-            SearchedMovieEntry movie = new SearchedMovieEntry(result);
+            SearchResultEntry movie = new SearchResultEntry(result);
             vlSearchResults.add(movie);
         }
 
