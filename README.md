@@ -2,11 +2,12 @@
 Aplikacja webowa do tworzenia listy filmów do obejrzenia.
  
 # Wykorzystane Narzędzia
- - [OMDB Api](http://www.omdbapi.com/) do pobierania informacji,szukania filmów.
+ - [TVDB Api](https://developers.themoviedb.org/3/) do pobierania informacji,szukania filmów.
  - [Vaadin Flow](https://vaadin.com/flow) do utworzenia aplikacji web
  - [JUnit 5](https://junit.org/junit5/) do testowania
  - [Maven](https://maven.apache.org/) do zarządzania projektem
  - [IntelliJ IDEA](https://www.jetbrains.com/idea/) środowisko programistyczne
+ - [jsonschema2pojo](http://www.jsonschema2pojo.org/) do generawania klas Javy z JSON'ów
 
 # Struktura projektu
 Folder / Klasa  |   Użycie
@@ -31,16 +32,6 @@ Aby otworzyć projekt, wystarczy otworzyć wybranym środowisku progrmaistycznym
 plik `pom.xml`
 
 # Uruchomienie Aplikacji
-Po zbudowaniu aplikacji, wystarczy uruchomić web serwer Jetty przez plugin Maven'a:
-
-    jetty:run
-
-W środowisku **IDEA** wystarczy:
-
-    2x Nacisnąć Shift
-    > maven
-    Enter
-    
-    Wybrać MovTrack -> Plugins -> jetty -> jetty:run
+Po zbudowaniu aplikacji, wystarczy uruchomić `MovTrackApp`
 
 Następnie otworzyć przeglądarkę na http://localhost:8080
