@@ -11,14 +11,15 @@ public class Media {
     @Id
     @GeneratedValue
     private int ID;
-    private long mediaID;
+    private int mediaID;
     private String mediaType;
     private ListType listType;
 
     public Media(){ mediaID = 0; listType = null; mediaType = "movie"; }
 
-    public Media(long mediaID, String mediaType, ListType type){
-        this.mediaID = mediaID; listType = type;
+    public Media(int mediaID, String mediaType, ListType type){
+        this.mediaID = mediaID;
+        listType = type;
         this.mediaType = mediaType;
     }
 

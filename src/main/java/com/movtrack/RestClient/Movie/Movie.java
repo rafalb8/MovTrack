@@ -73,7 +73,7 @@ public class Movie {
     @JsonProperty("release_date")
     private String releaseDate;
     @JsonProperty("revenue")
-    private Integer revenue;
+    private Long revenue;
     @JsonProperty("runtime")
     private Integer runtime;
     @JsonProperty("spoken_languages")
@@ -254,12 +254,12 @@ public class Movie {
     }
 
     @JsonProperty("revenue")
-    public Integer getRevenue() {
+    public Long getRevenue() {
         return revenue;
     }
 
     @JsonProperty("revenue")
-    public void setRevenue(Integer revenue) {
+    public void setRevenue(Long revenue) {
         this.revenue = revenue;
     }
 
