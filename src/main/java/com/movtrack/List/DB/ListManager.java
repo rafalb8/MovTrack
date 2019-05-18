@@ -11,33 +11,39 @@ import java.util.List;
 public class ListManager {
 
     @Autowired
-    ListRepository movieRepository;
+    ListRepository mediaRepo;
 
-    public List<MovieEntity> getAll(){
-        List<MovieEntity> movies = new ArrayList<>();
-        movieRepository.findAll().forEach(movie -> movies.add(movie));
+    public List<Media> getAll(){
+        List<Media> movies = new ArrayList<>();
+        mediaRepo.findAll().forEach(movie -> movies.add(movie));
         return movies;
     }
 
-    public MovieEntity getByID(int id){
-        return movieRepository.findById(id).get();
+    public Media getByID(int id){
+        return mediaRepo.findById(id).get();
     }
 
-    public List<MovieEntity> getAllByType(ListType type){
-        List<MovieEntity> movies = new ArrayList<>();
-        movieRepository.findAll().forEach( movie -> {if(movie.getType() == type)movies.add(movie);});
-        return movies;
+    public List<Media> getAllByMediaID(int mediaID){
+        return mediaRepo.findByMediaID(mediaID);
     }
 
-    public void save(MovieEntity movie){
-        movieRepository.saveAndFlush(movie);
+    public List<Media> getAllByListType(ListType type){
+        return mediaRepo.findByListType(type);
+    }
+
+    public List<Media> getAllByMediaType(String type){
+        return mediaRepo.findByMediaType(type);
+    }
+
+    public void save(Media movie){
+        mediaRepo.save(movie);
     }
 
     public void deleteByID(int id){
-        movieRepository.deleteById(id);
+        mediaRepo.deleteById(id);
     }
 
-    public void delete(MovieEntity movie){
-        movieRepository.delete(movie);
+    public void delete(Media movie){
+        mediaRepo.delete(movie);
     }
 }

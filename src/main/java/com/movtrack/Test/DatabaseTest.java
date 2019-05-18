@@ -1,6 +1,6 @@
 package com.movtrack.Test;
 
-import com.movtrack.List.DB.MovieEntity;
+import com.movtrack.List.DB.Media;
 import com.movtrack.List.DB.ListManager;
 import com.movtrack.List.ListType;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class DatabaseTest {
 
     @Test
     void drop(){
-        MovieEntity m = new MovieEntity(550, ListType.WatchList);
+        Media m = new Media(550, "movie", ListType.WatchList);
         list.save(m);
 
         assertTrue(list.getAll().size() > 0, "Size > 0");
@@ -31,26 +31,43 @@ public class DatabaseTest {
     void insert(){
         int size = list.getAll().size();
 
-        MovieEntity m = new MovieEntity(550, ListType.WatchList);
+        Media m = new Media(550, "movie", ListType.WatchList);
 
         list.save(m);
 
         assertTrue(list.getAll().size() - size > 0, "Size didn't change");
-        assertEquals(list.getAll().get(0).getMovieID(), 550, "Incorrect MovieID");
+        assertEquals(list.getAll().get(0).getMediaID(), 550, "Incorrect MovieID");
         list.delete(m);
     }
 
     @Test
-    void getByType(){
-        MovieEntity m1 = new MovieEntity(100, ListType.WatchList);
-        MovieEntity m2 = new MovieEntity(101, ListType.Watched);
-        MovieEntity m3 = new MovieEntity(102, ListType.WatchList);
+    void getByListType(){
+        Media m1 = new Media(100, "movie", ListType.WatchList);
+        Media m2 = new Media(101, "movie", ListType.Watched);
+        Media m3 = new Media(102, "movie", ListType.WatchList);
 
         list.save(m1);
         list.save(m2);
         list.save(m3);
 
-        assertEquals(list.getAllByType(ListType.WatchList).size(), 2, "Incorrect movie count");
+        assertEquals(list.getAllByListType(ListType.WatchList).size(), 2, "Incorrect movie count");
+
+        list.delete(m1);
+        list.delete(m2);
+        list.delete(m3);
+    }
+
+    @Test
+    void getByMediaType(){
+        Media m1 = new Media(100, "tv", ListType.WatchList);
+        Media m2 = new Media(101, "tv", ListType.Watched);
+        Media m3 = new Media(102, "movie", ListType.WatchList);
+
+        list.save(m1);
+        list.save(m2);
+        list.save(m3);
+
+        assertEquals(list.getAllByMediaType("tv").size(), 2, "Incorrect tv count");
 
         list.delete(m1);
         list.delete(m2);

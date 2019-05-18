@@ -36,8 +36,8 @@ public class SearchResultEntry extends HorizontalLayout {
         }
 
         lblType = new Html("<h2>"+result.getMediaType().toUpperCase()+"</h2>");
-        btnWatch = new ListButton(ListType.Watched);
-        btnToWatch = new ListButton(ListType.WatchList);
+        btnWatch = new ListButton(ListType.Watched, result.getMediaType(), result.getId());
+        btnToWatch = new ListButton(ListType.WatchList, result.getMediaType(), result.getId());
 
         vlInfo.add(lblTitle, lblType, btnWatch, btnToWatch);
         add(imgPoster, vlInfo);

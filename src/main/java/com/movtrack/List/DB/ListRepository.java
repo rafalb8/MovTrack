@@ -1,5 +1,13 @@
 package com.movtrack.List.DB;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.movtrack.List.ListType;
+import org.springframework.data.repository.CrudRepository;
 
-public interface ListRepository extends JpaRepository<MovieEntity, Integer> {}
+import java.util.List;
+
+
+public interface ListRepository extends CrudRepository<Media, Integer> {
+    List<Media> findByListType(ListType listType);
+    List<Media> findByMediaID(long mediaID);
+    List<Media> findByMediaType(String mediaType);
+}

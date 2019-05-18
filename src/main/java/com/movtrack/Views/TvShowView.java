@@ -28,7 +28,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
     private Label lblTitle;
     private Label lblGenre;
     private Label lblPlot;
-    private ListButton btnWatch;
+    private ListButton btnWatched;
     private ListButton btnToWatch;
 
 
@@ -43,7 +43,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         lblTitle = new Label();
         lblGenre = new Label();
         lblPlot = new Label();
-        btnWatch = new ListButton(ListType.Watched);
+        btnWatched = new ListButton(ListType.Watched);
         btnToWatch = new ListButton(ListType.WatchList);
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -52,14 +52,14 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         vlInfo.setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
 
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
-        setHorizontalComponentAlignment(Alignment.START, btnWatch, btnToWatch);
+        setHorizontalComponentAlignment(Alignment.START, btnWatched, btnToWatch);
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
         vlInfo.add(hlTitle, lblGenre, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
-        add(banner, hlMainInfo, btnWatch, btnToWatch);
+        add(banner, hlMainInfo, btnWatched, btnToWatch);
     }
 
     private void refreshInfo(TvShow tvShow){
@@ -72,6 +72,10 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + " (" + tvShow.getFirstAirDate() +")</h1>");
         lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + tvShow.getGenres().get(0).getName()+"</b>");
         lblPlot.getElement().setProperty("innerHTML","<i>"+tvShow.getOverview()+"</i>");
+
+        // Update buttons
+        btnWatched.setMediaID(tvShow.getId());
+        btnToWatch.setMediaID(tvShow.getId());
     }
 
     @Override
