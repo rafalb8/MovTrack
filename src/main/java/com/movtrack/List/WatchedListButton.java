@@ -1,7 +1,7 @@
 package com.movtrack.List;
 
 import com.movtrack.List.DB.ListManager;
-import com.movtrack.List.DB.Media;
+import com.movtrack.List.DB.MediaEntity;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -29,7 +29,7 @@ public class WatchedListButton extends ListButton {
 
     private void clickEvent(){
         if(!boolAdded){
-            listManager.save(new Media(mediaID, mediaType, listType));
+            listManager.save(new MediaEntity(mediaID, mediaType, listType));
         } else {
             listManager.deleteByID(ID);
         }

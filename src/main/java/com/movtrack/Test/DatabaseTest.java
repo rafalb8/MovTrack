@@ -1,6 +1,6 @@
 package com.movtrack.Test;
 
-import com.movtrack.List.DB.Media;
+import com.movtrack.List.DB.MediaEntity;
 import com.movtrack.List.DB.ListManager;
 import com.movtrack.List.ListType;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,7 @@ public class DatabaseTest {
 
     @Test
     void drop(){
-        Media m = new Media(550, "movie", ListType.WatchList);
+        MediaEntity m = new MediaEntity(550, "movie", ListType.WatchList);
         list.save(m);
 
         assertTrue(list.getAll().size() > 0, "Size > 0");
@@ -31,7 +31,7 @@ public class DatabaseTest {
     void insert(){
         int size = list.getAll().size();
 
-        Media m = new Media(550, "movie", ListType.WatchList);
+        MediaEntity m = new MediaEntity(550, "movie", ListType.WatchList);
 
         list.save(m);
 
@@ -42,9 +42,9 @@ public class DatabaseTest {
 
     @Test
     void getByListType(){
-        Media m1 = new Media(100, "movie", ListType.WatchList);
-        Media m2 = new Media(101, "movie", ListType.Watched);
-        Media m3 = new Media(102, "movie", ListType.WatchList);
+        MediaEntity m1 = new MediaEntity(100, "movie", ListType.WatchList);
+        MediaEntity m2 = new MediaEntity(101, "movie", ListType.Watched);
+        MediaEntity m3 = new MediaEntity(102, "movie", ListType.WatchList);
 
         list.save(m1);
         list.save(m2);
@@ -59,9 +59,9 @@ public class DatabaseTest {
 
     @Test
     void getByMediaType(){
-        Media m1 = new Media(100, "tv", ListType.WatchList);
-        Media m2 = new Media(101, "tv", ListType.Watched);
-        Media m3 = new Media(102, "movie", ListType.WatchList);
+        MediaEntity m1 = new MediaEntity(100, "tv", ListType.WatchList);
+        MediaEntity m2 = new MediaEntity(101, "tv", ListType.Watched);
+        MediaEntity m3 = new MediaEntity(102, "movie", ListType.WatchList);
 
         list.save(m1);
         list.save(m2);

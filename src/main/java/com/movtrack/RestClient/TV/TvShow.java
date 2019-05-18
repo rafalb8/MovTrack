@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.movtrack.RestClient.Media;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -42,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "vote_average",
     "vote_count"
 })
-public class TvShow {
+public class TvShow implements Media {
 
     @JsonProperty("backdrop_path")
     private String backdropPath;

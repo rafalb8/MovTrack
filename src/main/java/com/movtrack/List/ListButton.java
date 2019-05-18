@@ -1,6 +1,6 @@
 package com.movtrack.List;
 
-import com.movtrack.List.DB.Media;
+import com.movtrack.List.DB.MediaEntity;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -13,7 +13,7 @@ public class ListButton extends Button {
     private final Icon icoRemove = new Icon(VaadinIcon.CHECK_SQUARE);
     protected boolean boolAdded;
 
-    // Media Entity values
+    // MediaEntity Entity values
     protected int ID;
     protected int mediaID;
     protected String mediaType;
@@ -26,9 +26,9 @@ public class ListButton extends Button {
         refresh();
     }
 
-    protected void findMedia(List<Media> mediaList){
+    protected void findMedia(List<MediaEntity> mediaList){
         // Get status from list
-        for(Media m : mediaList){
+        for(MediaEntity m : mediaList){
             if(m.getListType() == listType && m.getMediaType().equals(mediaType)){
                 boolAdded = true;
                 ID = m.getID();
@@ -37,7 +37,7 @@ public class ListButton extends Button {
         }
     }
 
-    // Set Icon and text
+    // Set Icon and label
     protected void refresh(){
         if(!boolAdded){
             setIcon(icoAdd);

@@ -1,9 +1,6 @@
 package com.movtrack;
 
-import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-
-public class Banner extends HorizontalLayout {
+public class Banner extends LabelLayout {
     private static final String text =
             "<pre>"+
             "8888ba.88ba                    d888888P                            dP      \n" +
@@ -14,20 +11,15 @@ public class Banner extends HorizontalLayout {
             "dP   dP   dP `88888P' 8888P'      dP    dP       `88888P8 `88888P' dP   `YP"+
             "</pre>";
 
-    private static Html lblText;
-
 
     public Banner() {
-        super();
-        lblText = new Html(text);
-        add(lblText);
+        super(text);
         getElement().addEventListener("click", event -> click());
-        lblText.getElement().getStyle().set("background", "#ffffff");
     }
 
     // Click event
     public void click() {
-        getUI().get().navigate(""); // Return home
-
+        // Return home
+        getUI().ifPresent(ui -> ui.navigate(""));
     }
 }

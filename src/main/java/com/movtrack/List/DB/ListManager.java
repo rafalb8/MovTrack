@@ -13,29 +13,29 @@ public class ListManager {
     @Autowired
     ListRepository mediaRepo;
 
-    public List<Media> getAll(){
-        List<Media> movies = new ArrayList<>();
+    public List<MediaEntity> getAll(){
+        List<MediaEntity> movies = new ArrayList<>();
         mediaRepo.findAll().forEach(movie -> movies.add(movie));
         return movies;
     }
 
-    public Media getByID(int id){
+    public MediaEntity getByID(int id){
         return mediaRepo.findById(id).get();
     }
 
-    public List<Media> getAllByMediaID(int mediaID){
+    public List<MediaEntity> getAllByMediaID(int mediaID){
         return mediaRepo.findByMediaID(mediaID);
     }
 
-    public List<Media> getAllByListType(ListType type){
+    public List<MediaEntity> getAllByListType(ListType type){
         return mediaRepo.findByListType(type);
     }
 
-    public List<Media> getAllByMediaType(String type){
+    public List<MediaEntity> getAllByMediaType(String type){
         return mediaRepo.findByMediaType(type);
     }
 
-    public void save(Media movie){
+    public void save(MediaEntity movie){
         mediaRepo.save(movie);
     }
 
@@ -43,7 +43,7 @@ public class ListManager {
         mediaRepo.deleteById(id);
     }
 
-    public void delete(Media movie){
+    public void delete(MediaEntity movie){
         mediaRepo.delete(movie);
     }
 }

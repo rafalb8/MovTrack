@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.List;
 
 
-public interface ListRepository extends CrudRepository<Media, Integer> {
-    List<Media> findByListType(ListType listType);
-    List<Media> findByMediaID(int mediaID);
-    List<Media> findByMediaType(String mediaType);
+public interface ListRepository extends CrudRepository<MediaEntity, Integer> {
+    List<MediaEntity> findByListType(ListType listType);
+    List<MediaEntity> findByMediaID(int mediaID);
+    List<MediaEntity> findByMediaType(String mediaType);
 }
