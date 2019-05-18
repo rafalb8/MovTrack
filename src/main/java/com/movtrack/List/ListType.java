@@ -1,4 +1,4 @@
-package com.movtrack;
+package com.movtrack.List;
 
 public enum ListType {
     Watched{

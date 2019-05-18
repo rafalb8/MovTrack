@@ -6,7 +6,6 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-
 // Class representing entry in searched movies list
 public class SearchResultEntry extends HorizontalLayout {
     private Result result;
@@ -14,8 +13,6 @@ public class SearchResultEntry extends HorizontalLayout {
     private VerticalLayout vlInfo;
     private Html lblTitle;
     private Html lblType;
-    private ListButton btnWatch;
-    private ListButton btnToWatch;
 
     public SearchResultEntry(Result result) {
         this.result = result;
@@ -34,10 +31,8 @@ public class SearchResultEntry extends HorizontalLayout {
         }
 
         lblType = new Html("<h2>"+result.getMediaType().toUpperCase()+"</h2>");
-        btnWatch = new ListButton(ListType.Watched);
-        btnToWatch = new ListButton(ListType.WatchList);
 
-        vlInfo.add(lblTitle, lblType, btnWatch, btnToWatch);
+        vlInfo.add(lblTitle, lblType);
         add(imgPoster, vlInfo);
 
         imgPoster.getElement().addEventListener("click", event -> click());

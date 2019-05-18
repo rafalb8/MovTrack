@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.movtrack.RestClient.Media;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -38,7 +39,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
     "vote_average",
     "vote_count"
 })
-public class Movie {
+public class Movie implements Media {
 
     @JsonProperty("adult")
     private Boolean adult;
@@ -73,7 +74,7 @@ public class Movie {
     @JsonProperty("release_date")
     private String releaseDate;
     @JsonProperty("revenue")
-    private Integer revenue;
+    private Long revenue;
     @JsonProperty("runtime")
     private Integer runtime;
     @JsonProperty("spoken_languages")
@@ -254,12 +255,12 @@ public class Movie {
     }
 
     @JsonProperty("revenue")
-    public Integer getRevenue() {
+    public Long getRevenue() {
         return revenue;
     }
 
     @JsonProperty("revenue")
-    public void setRevenue(Integer revenue) {
+    public void setRevenue(Long revenue) {
         this.revenue = revenue;
     }
 
