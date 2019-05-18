@@ -40,4 +40,21 @@ public class DatabaseTest {
         list.delete(m);
     }
 
+    @Test
+    void getByType(){
+        MovieEntity m1 = new MovieEntity(100, ListType.WatchList);
+        MovieEntity m2 = new MovieEntity(101, ListType.Watched);
+        MovieEntity m3 = new MovieEntity(102, ListType.WatchList);
+
+        list.save(m1);
+        list.save(m2);
+        list.save(m3);
+
+        assertEquals(list.getAllByType(ListType.WatchList).size(), 2, "Incorrect movie count");
+
+        list.delete(m1);
+        list.delete(m2);
+        list.delete(m3);
+    }
+
 }

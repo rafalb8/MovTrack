@@ -1,6 +1,6 @@
 package com.movtrack.List.DB;
 
-import com.movtrack.MovTrackApp;
+import com.movtrack.List.ListType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +21,12 @@ public class ListManager {
 
     public MovieEntity getByID(int id){
         return movieRepository.findById(id).get();
+    }
+
+    public List<MovieEntity> getAllByType(ListType type){
+        List<MovieEntity> movies = new ArrayList<>();
+        movieRepository.findAll().forEach( movie -> {if(movie.getType() == type)movies.add(movie);});
+        return movies;
     }
 
     public void save(MovieEntity movie){
