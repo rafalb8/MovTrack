@@ -50,7 +50,7 @@ public class RestClient {
         return webtarget.path("/search/multi").queryParam("query", title).request(MediaType.APPLICATION_JSON).get(Search.class);
     }
 
-    // Get Movie Recommendations
+    // Get MovieEntity Recommendations
     public MovieRecommendations getMovieRecommendations(String id){
         return webtarget.path("/movie/" + id +"/recommendations").request(MediaType.APPLICATION_JSON).get(MovieRecommendations.class);
     }

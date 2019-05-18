@@ -29,14 +29,14 @@ public class ListButton extends Button {
         if(!boolAdded){
             setIcon(icoAdd);
             if(listType != ListType.Watched) {
-                setText("Add Movie to " + listType.toString());
+                setText("Add MovieEntity to " + listType.toString());
             } else {
                 setText(listType.toString());
             }
         } else {
             setIcon(icoRemove);
             if(listType != ListType.Watched) {
-                setText("Remove Movie from " + listType.toString());
+                setText("Remove MovieEntity from " + listType.toString());
             } else {
                 setText(listType.toString());
             }

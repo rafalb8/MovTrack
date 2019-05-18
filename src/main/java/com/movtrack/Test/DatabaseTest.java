@@ -1,6 +1,6 @@
 package com.movtrack.Test;
 
-import com.movtrack.List.DB.Movie;
+import com.movtrack.List.DB.MovieEntity;
 import com.movtrack.List.DB.ListManager;
 import com.movtrack.List.ListType;
 import org.junit.jupiter.api.Test;
@@ -16,23 +16,28 @@ public class DatabaseTest {
     ListManager list;
 
     @Test
-    void insert(){
-        int size = list.getAll().size();
+    void drop(){
+        MovieEntity m = new MovieEntity(550, ListType.WatchList);
+        list.save(m);
 
-        list.save(new Movie(100, 550, ListType.WatchList));
+        assertTrue(list.getAll().size() > 0, "Size > 0");
 
-        assertTrue(list.getAll().size() - size > 0, "Size didn't change");
-        assertEquals(list.getByID(100).getMovieID(), 550, "Incorrect MovieID");
+        list.deleteByID(m.getID());
+
+        assertTrue(list.getAll().size() == 0, "Size == 0");
     }
 
     @Test
-    void drop(){
-        list.save(new Movie(101, 550, ListType.WatchList));
+    void insert(){
+        int size = list.getAll().size();
 
-        assertTrue(list.getAll().size() > 0, "Size  == 0");
+        MovieEntity m = new MovieEntity(550, ListType.WatchList);
 
-        list.deleteByID(101);
+        list.save(m);
 
-        assertTrue(list.getAll().size() == 0, "Size  != 0");
+        assertTrue(list.getAll().size() - size > 0, "Size didn't change");
+        assertEquals(list.getAll().get(0).getMovieID(), 550, "Incorrect MovieID");
+        list.delete(m);
     }
+
 }
