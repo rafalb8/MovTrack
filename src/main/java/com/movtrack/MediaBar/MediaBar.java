@@ -1,15 +1,15 @@
 package com.movtrack.MediaBar;
 
 import com.movtrack.LabelLayout;
-import com.movtrack.List.DB.ListManager;
 import com.movtrack.List.DB.MediaEntity;
+import com.movtrack.RestClient.RestClient;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.spring.annotation.SpringComponent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.util.Pair;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 // Horizontal list showing movies to watch
 
@@ -40,13 +40,17 @@ public class MediaBar extends VerticalLayout {
         lblTitle.getElement().setProperty("innerHTML", "<h3>" + title + "</h3>");
     }
 
+    public void clear(){
+        hlMovies.removeAll();
+    }
+
     // Show Entries from Database
     public void show(List<MediaEntity> mediaList){
         for(MediaEntity m : mediaList){
             hlMovies.add(new MoviePoster(m.getMediaID(), m.getMediaType()));
         }
 
-        if(mediaList.size() > 0 ){
+        if(mediaList.isEmpty()){
             lblText.setVisible(true);
         } else {
             lblText.setVisible(false);
@@ -59,7 +63,7 @@ public class MediaBar extends VerticalLayout {
             hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
         }
 
-        if(pairList.size() > 0 ){
+        if(pairList.isEmpty()){
             lblText.setVisible(true);
         } else {
             lblText.setVisible(false);
@@ -67,12 +71,39 @@ public class MediaBar extends VerticalLayout {
     }
 
     // Show Pairs of PosterPath and Title
-    public void showResults(List<Pair<String, String>> pairList){
+    public void showPoster(List<Pair<String, String>> pairList){
         for(Pair<String, String> pair : pairList){
             hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
         }
 
-        if(pairList.size() > 0 ){
+        if(pairList.isEmpty()){
+            lblText.setVisible(true);
+        } else {
+            lblText.setVisible(false);
+        }
+    }
+
+    // Show recommendations
+    public void showRecommended(int mediaID, String mediaType){
+        RestClient client = RestClient.getInstance();
+        List<Pair<String, String>> pairs = new ArrayList<>();
+
+        if(mediaType.equals("movie")){
+            // Get Movie Recommendations
+            client.getMovieRecommendations(String.valueOf(mediaID)).getResults().forEach(
+                    movie -> pairs.add(Pair.of(movie.getPosterPath(), movie.getTitle()))
+            );
+        } else {
+            // Get TV Recommendations
+            client.getTvShowRecommendations(String.valueOf(mediaID)).getResults().forEach(
+                    tv -> pairs.add(Pair.of(tv.getPosterPath(), tv.getName()))
+            );
+        }
+
+        // Show 6 entries
+        showPoster(pairs.stream().limit(6).collect(Collectors.toList()));
+
+        if(pairs.isEmpty()){
             lblText.setVisible(true);
         } else {
             lblText.setVisible(false);
