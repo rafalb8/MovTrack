@@ -56,6 +56,7 @@ public class MoviePoster extends VerticalLayout {
     }
 
     public MoviePoster(String posterPath, String mediaTitle){
+        client = null;
         lblTitle = new LabelLayout("<b>" + mediaTitle + "</b>");
 
         if(posterPath != null) {

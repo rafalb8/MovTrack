@@ -40,6 +40,7 @@ public class MediaBar extends VerticalLayout {
         lblTitle.getElement().setProperty("innerHTML", "<h3>" + title + "</h3>");
     }
 
+    // Show Entries from Database
     public void show(List<MediaEntity> mediaList){
         for(MediaEntity m : mediaList){
             hlMovies.add(new MoviePoster(m.getMediaID(), m.getMediaType()));
@@ -52,8 +53,22 @@ public class MediaBar extends VerticalLayout {
         }
     }
 
+    // Show Pairs of mediaID and MediaType
     public void showPairs(List<Pair<Integer, String>> pairList){
         for(Pair<Integer, String> pair : pairList){
+            hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
+        }
+
+        if(pairList.size() > 0 ){
+            lblText.setVisible(true);
+        } else {
+            lblText.setVisible(false);
+        }
+    }
+
+    // Show Pairs of PosterPath and Title
+    public void showResults(List<Pair<String, String>> pairList){
+        for(Pair<String, String> pair : pairList){
             hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
         }
 
