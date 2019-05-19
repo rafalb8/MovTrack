@@ -7,6 +7,7 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.spring.annotation.SpringComponent;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.util.Pair;
 
 import java.util.List;
 
@@ -41,10 +42,22 @@ public class MediaBar extends VerticalLayout {
 
     public void show(List<MediaEntity> mediaList){
         for(MediaEntity m : mediaList){
-            hlMovies.add(new MoviePoster(m));
+            hlMovies.add(new MoviePoster(m.getMediaID(), m.getMediaType()));
         }
 
         if(mediaList.size() > 0 ){
+            lblText.setVisible(true);
+        } else {
+            lblText.setVisible(false);
+        }
+    }
+
+    public void showPairs(List<Pair<Integer, String>> pairList){
+        for(Pair<Integer, String> pair : pairList){
+            hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
+        }
+
+        if(pairList.size() > 0 ){
             lblText.setVisible(true);
         } else {
             lblText.setVisible(false);
