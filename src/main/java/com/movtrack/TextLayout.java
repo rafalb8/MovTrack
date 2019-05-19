@@ -3,25 +3,26 @@ package com.movtrack;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
-public class LabelLayout extends HorizontalLayout {
+public class TextLayout extends HorizontalLayout {
 
     protected final Html label;
 
-    public LabelLayout(String html) {
+    public TextLayout(String html) {
         super();
 
         label = new Html(html);
         getElement().getStyle().set("background", "#ffffff");
         label.getElement().getStyle().set("background", "#ffffff");
 
+        setDefaultVerticalComponentAlignment(Alignment.CENTER);
         add(label);
     }
 
-    public void setLabel(String html){
+    public void setText(String html){
         label.getElement().setProperty("innerHTML", html);
     }
 
-    public String getLabel(){
+    public String getText(){
         return label.getInnerHtml();
     }
 
@@ -29,9 +30,4 @@ public class LabelLayout extends HorizontalLayout {
         getElement().getStyle().set("background", color);
         label.getElement().getStyle().set("background", color);
     }
-
-//    public void setVisible(boolean visible){
-//        label.setVisible(visible);
-//        setVisible(visible);
-//    }
 }
