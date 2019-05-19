@@ -30,4 +30,8 @@ public class TextLayout extends HorizontalLayout {
         getElement().getStyle().set("background", color);
         label.getElement().getStyle().set("background", color);
     }
+
+    public void setColor(String color){
+        label.getElement().getStyle().set("color", color);
+    }
 }
