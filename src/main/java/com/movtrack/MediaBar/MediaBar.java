@@ -1,6 +1,6 @@
 package com.movtrack.MediaBar;
 
-import com.movtrack.LabelLayout;
+import com.movtrack.TextLayout;
 import com.movtrack.List.DB.MediaEntity;
 import com.movtrack.RestClient.RestClient;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -12,20 +12,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // Horizontal list showing movies to watch
-
 public class MediaBar extends VerticalLayout {
 
     private final HorizontalLayout hlMovies;
-    private final LabelLayout lblTitle;
-    private final LabelLayout lblText;
+    private final TextLayout lblTitle;
+    private final TextLayout lblText;
 
     public MediaBar(String title) {
         super();
         hlMovies = new HorizontalLayout();
 
-        lblTitle = new LabelLayout( "<h3>" + title + "</h3>");
-        lblText = new LabelLayout("<b>Nothing to show</b>");
-        lblText.setVisible(false);
+        lblTitle = new TextLayout( "<h3>" + title + "</h3>");
+        lblText = new TextLayout("<b>Nothing to show</b>");
 
         // Set gray background
         getElement().getStyle().set("background", "#E7EBEF");
@@ -37,7 +35,7 @@ public class MediaBar extends VerticalLayout {
     }
 
     public void setTitle(String title){
-        lblTitle.getElement().setProperty("innerHTML", "<h3>" + title + "</h3>");
+        lblTitle.setText("<h3>" + title + "</h3>");
     }
 
     public void clear(){
@@ -102,11 +100,5 @@ public class MediaBar extends VerticalLayout {
 
         // Show 6 entries
         showPoster(pairs.stream().limit(6).collect(Collectors.toList()));
-
-        if(pairs.isEmpty()){
-            lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
-        }
     }
 }

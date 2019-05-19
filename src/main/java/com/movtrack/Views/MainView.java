@@ -11,14 +11,12 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.server.PWA;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.Random;
 
 @Route("")
-@PWA(name = "MovTrack - Track watched Movies and Tv Shows", shortName = "MovTrack")
 public class MainView extends VerticalLayout implements BeforeEnterObserver {
 
     private Banner banner;

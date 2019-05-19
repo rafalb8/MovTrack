@@ -1,6 +1,6 @@
 package com.movtrack;
 
-public class Banner extends LabelLayout {
+public class Banner extends TextLayout {
     private static final String text =
             "<pre>"+
             "8888ba.88ba                    d888888P                            dP      \n" +

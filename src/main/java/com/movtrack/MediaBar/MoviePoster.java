@@ -1,7 +1,6 @@
 package com.movtrack.MediaBar;
 
-import com.movtrack.LabelLayout;
-import com.movtrack.List.DB.MediaEntity;
+import com.movtrack.TextLayout;
 import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.TV.TvShow;
@@ -11,7 +10,7 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 public class MoviePoster extends VerticalLayout {
     private final String imgUrl = "https://image.tmdb.org/t/p/w200";
     private final Image img;
-    private final LabelLayout lblTitle;
+    private final TextLayout lblTitle;
 
     private final RestClient client;
 
@@ -22,7 +21,7 @@ public class MoviePoster extends VerticalLayout {
         if(mediaType.equals("movie")) {
             Movie movie = client.getMovieByID(String.valueOf(mediaID));
 
-            lblTitle = new LabelLayout("<b>" + movie.getTitle() + "</b>");
+            lblTitle = new TextLayout("<b>" + movie.getTitle() + "</b>");
 
             if(movie.getPosterPath() != null) {
                 img = new Image(imgUrl + movie.getPosterPath(), "");
@@ -38,7 +37,7 @@ public class MoviePoster extends VerticalLayout {
         } else {
             TvShow tv = client.getTVShowByID(String.valueOf(mediaID));
 
-            lblTitle = new LabelLayout("<b>" + tv.getName() + "</b>");
+            lblTitle = new TextLayout("<b>" + tv.getName() + "</b>");
 
             if(tv.getPosterPath() != null) {
                 img = new Image(imgUrl + tv.getPosterPath(), "");
@@ -57,7 +56,7 @@ public class MoviePoster extends VerticalLayout {
 
     public MoviePoster(String posterPath, String mediaTitle){
         client = null;
-        lblTitle = new LabelLayout("<b>" + mediaTitle + "</b>");
+        lblTitle = new TextLayout("<b>" + mediaTitle + "</b>");
 
         if(posterPath != null) {
             img = new Image(imgUrl + posterPath, "");
