@@ -9,6 +9,7 @@ import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 public class MoviePoster extends VerticalLayout {
+    private final String imgUrl = "https://image.tmdb.org/t/p/w200";
     private final Image img;
     private final LabelLayout lblTitle;
 
@@ -21,8 +22,13 @@ public class MoviePoster extends VerticalLayout {
         if(mediaType.equals("movie")) {
             Movie movie = client.getMovieByID(String.valueOf(mediaID));
 
-            img = new Image("https://image.tmdb.org/t/p/w200" + movie.getPosterPath(), "");
             lblTitle = new LabelLayout("<b>" + movie.getTitle() + "</b>");
+
+            if(movie.getPosterPath() != null) {
+                img = new Image(imgUrl + movie.getPosterPath(), "");
+            } else {
+                img = new Image("poster.png", "");
+            }
 
             // Add click event
             getElement().addEventListener("click", event ->
@@ -32,14 +38,32 @@ public class MoviePoster extends VerticalLayout {
         } else {
             TvShow tv = client.getTVShowByID(String.valueOf(mediaID));
 
-            img = new Image("https://image.tmdb.org/t/p/w200" + tv.getPosterPath(), "");
             lblTitle = new LabelLayout("<b>" + tv.getName() + "</b>");
+
+            if(tv.getPosterPath() != null) {
+                img = new Image(imgUrl + tv.getPosterPath(), "");
+            } else {
+                img = new Image("poster.png", "");
+            }
 
             // Add click event
             getElement().addEventListener("click", event ->
                     getUI().ifPresent(ui -> ui.navigate("/tv/" + tv.getId()))
             );
         }
+
+        add(img, lblTitle);
+    }
+
+    public MoviePoster(String posterPath, String mediaTitle){
+        lblTitle = new LabelLayout("<b>" + mediaTitle + "</b>");
+
+        if(posterPath != null) {
+            img = new Image(imgUrl + posterPath, "");
+        } else {
+            img = new Image("poster.png", "");
+        }
+
 
         add(img, lblTitle);
     }
