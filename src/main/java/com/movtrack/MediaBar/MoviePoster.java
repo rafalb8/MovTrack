@@ -6,6 +6,7 @@ import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.TV.TvShow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import org.javatuples.Quartet;
 
 public class MoviePoster extends VerticalLayout {
     private final String imgUrl = "https://image.tmdb.org/t/p/w200";
@@ -30,9 +31,7 @@ public class MoviePoster extends VerticalLayout {
             }
 
             // Add click event
-            getElement().addEventListener("click", event ->
-                getUI().ifPresent(ui -> ui.navigate("/movie/" + movie.getId()))
-            );
+            img.addClickListener(click -> getUI().ifPresent(ui -> ui.navigate("movie/" + movie.getId())));
 
         } else {
             TvShow tv = client.getTVShowByID(String.valueOf(mediaID));
@@ -46,15 +45,19 @@ public class MoviePoster extends VerticalLayout {
             }
 
             // Add click event
-            getElement().addEventListener("click", event ->
-                    getUI().ifPresent(ui -> ui.navigate("/tv/" + tv.getId()))
-            );
+            img.addClickListener(click -> getUI().ifPresent(ui -> ui.navigate("tv/" + tv.getId())));
         }
 
         add(img, lblTitle);
     }
 
-    public MoviePoster(String posterPath, String mediaTitle){
+    //  args : mediaID, title, type, posterPath
+    public MoviePoster(Quartet<Integer, String, String, String> args){
+        int mediaID = args.getValue0();
+        String mediaTitle = args.getValue1();
+        String mediaType = args.getValue2();
+        String posterPath = args.getValue3();
+
         client = null;
         lblTitle = new TextLayout("<b>" + mediaTitle + "</b>");
 
@@ -64,6 +67,12 @@ public class MoviePoster extends VerticalLayout {
             img = new Image("poster.png", "");
         }
 
+        // Add click event
+        if(mediaType.equals("movie")) {
+            img.addClickListener(click -> getUI().ifPresent(ui -> ui.navigate("movie/" + mediaID)));
+        } else {
+            img.addClickListener(click -> getUI().ifPresent(ui -> ui.navigate("tv/" + mediaID)));
+        }
 
         add(img, lblTitle);
     }

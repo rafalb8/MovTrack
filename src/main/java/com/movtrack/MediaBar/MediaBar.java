@@ -5,7 +5,8 @@ import com.movtrack.List.DB.MediaEntity;
 import com.movtrack.RestClient.RestClient;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import org.springframework.data.util.Pair;
+import org.javatuples.Pair;
+import org.javatuples.Quartet;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public class MediaBar extends VerticalLayout {
     // Show Pairs of mediaID and MediaType
     public void showPairs(List<Pair<Integer, String>> pairList){
         for(Pair<Integer, String> pair : pairList){
-            hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
+            hlMovies.add(new MoviePoster(pair.getValue0(), pair.getValue1()));
         }
 
         if(pairList.isEmpty()){
@@ -69,12 +70,12 @@ public class MediaBar extends VerticalLayout {
     }
 
     // Show Pairs of PosterPath and Title
-    public void showPoster(List<Pair<String, String>> pairList){
-        for(Pair<String, String> pair : pairList){
-            hlMovies.add(new MoviePoster(pair.getFirst(), pair.getSecond()));
+    public void showPoster(List<Quartet<Integer, String, String, String>> args){
+        for(Quartet<Integer, String, String, String> arg : args){
+            hlMovies.add(new MoviePoster(arg));
         }
 
-        if(pairList.isEmpty()){
+        if(args.isEmpty()){
             lblText.setVisible(true);
         } else {
             lblText.setVisible(false);
@@ -84,21 +85,23 @@ public class MediaBar extends VerticalLayout {
     // Show recommendations
     public void showRecommended(int mediaID, String mediaType){
         RestClient client = RestClient.getInstance();
-        List<Pair<String, String>> pairs = new ArrayList<>();
+
+        //  args : mediaID, title, type, posterPath
+        List<Quartet<Integer, String, String, String>> args = new ArrayList<>();
 
         if(mediaType.equals("movie")){
             // Get Movie Recommendations
             client.getMovieRecommendations(String.valueOf(mediaID)).getResults().forEach(
-                    movie -> pairs.add(Pair.of(movie.getPosterPath(), movie.getTitle()))
+                    movie -> args.add(Quartet.with(movie.getId(), movie.getTitle(), "movie", movie.getPosterPath()))
             );
         } else {
             // Get TV Recommendations
             client.getTvShowRecommendations(String.valueOf(mediaID)).getResults().forEach(
-                    tv -> pairs.add(Pair.of(tv.getPosterPath(), tv.getName()))
+                    tv -> args.add(Quartet.with(tv.getId(), tv.getName(), "tv", tv.getPosterPath()))
             );
         }
 
         // Show 6 entries
-        showPoster(pairs.stream().limit(6).collect(Collectors.toList()));
+        showPoster(args.stream().limit(6).collect(Collectors.toList()));
     }
 }

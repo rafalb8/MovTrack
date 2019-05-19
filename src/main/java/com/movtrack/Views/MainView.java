@@ -53,12 +53,13 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
         watchlistBar.clear();
         recommendedBar.clear();
 
-        List<MediaEntity> watchlist = listManager.getAllByListType(ListType.WatchList);
-        watchlistBar.show(watchlist);
+        watchlistBar.show(listManager.getAllByListType(ListType.WatchList));
 
-        if(!watchlist.isEmpty()){
-            int idx = new Random().nextInt(watchlist.size());
-            MediaEntity media = watchlist.get(idx);
+        List<MediaEntity> watchedlist = listManager.getAllByListType(ListType.Watched);
+
+        if(!watchedlist.isEmpty()){
+            int idx = new Random().nextInt(watchedlist.size());
+            MediaEntity media = watchedlist.get(idx);
 
             // Get recommendations
             recommendedBar.showRecommended(media.getMediaID(), media.getMediaType());
