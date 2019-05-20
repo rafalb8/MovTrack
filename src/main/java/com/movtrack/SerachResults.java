@@ -7,14 +7,14 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 // Class representing entry in searched movies list
-public class SearchResultEntry extends HorizontalLayout {
+public class SerachResults extends HorizontalLayout {
     private Result result;
     private Image imgPoster;
     private VerticalLayout vlInfo;
     private Html lblTitle;
     private Html lblType;
 
-    public SearchResultEntry(Result result) {
+    public SerachResults(Result result) {
         this.result = result;
         vlInfo = new VerticalLayout();
 
