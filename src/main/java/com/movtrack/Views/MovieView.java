@@ -3,6 +3,7 @@ package com.movtrack.Views;
 import com.movtrack.Banner;
 import com.movtrack.List.WatchListButton;
 import com.movtrack.List.WatchedListButton;
+import com.movtrack.MediaBar.MediaBar;
 import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.vaadin.flow.component.html.Image;
@@ -23,14 +24,16 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     private RestClient restClient;
 
     // Design
-    private Banner banner;
-    private HorizontalLayout hlMainInfo;
-    private VerticalLayout vlInfo;
-    private HorizontalLayout hlTitle;
-    private Image imgPoster;
-    private Label lblTitle;
-    private Label lblGenre;
-    private Label lblPlot;
+    private final Banner banner;
+    private final HorizontalLayout hlMainInfo;
+    private final VerticalLayout vlInfo;
+    private final HorizontalLayout hlTitle;
+    private final HorizontalLayout hlButtons;
+    private final Image imgPoster;
+    private final Label lblTitle;
+    private final Label lblGenre;
+    private final Label lblPlot;
+    private final MediaBar recommended;
 
     @Autowired
     private WatchedListButton btnWatched;
@@ -46,10 +49,12 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         hlMainInfo = new HorizontalLayout();
         vlInfo = new VerticalLayout();
         hlTitle = new HorizontalLayout();
+        hlButtons = new HorizontalLayout();
         imgPoster = new Image();
         lblTitle = new Label();
         lblGenre = new Label();
         lblPlot = new Label();
+        recommended = new MediaBar("Recommendation");
 
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
@@ -64,16 +69,18 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         vlInfo.add(hlTitle, lblGenre, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
-        add(banner, hlMainInfo);
+        add(banner, hlMainInfo, hlButtons, recommended);
     }
 
     @PostConstruct
     void init(){
         setHorizontalComponentAlignment(Alignment.START, btnWatched, btnWatchList);
-        add(btnWatched, btnWatchList);
+        hlButtons.add(btnWatched, btnWatchList);
     }
 
     private void refreshInfo(Movie movie){
+        recommended.clear();
+
         if(movie.getPosterPath() == null){
             imgPoster.setSrc("poster.png");
         } else {
@@ -87,6 +94,10 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
         // Update buttons
         btnWatched.init("movie", movie.getId());
         btnWatchList.init("movie", movie.getId());
+
+        // Recommendation list
+        recommended.setTitle("If you like " + movie.getTitle() + ", check out...");
+        recommended.showRecommended(movie.getId(), "movie");
     }
 
     @Override
