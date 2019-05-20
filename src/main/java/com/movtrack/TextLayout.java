@@ -14,7 +14,7 @@ public class TextLayout extends HorizontalLayout {
         getElement().getStyle().set("background", "#ffffff");
         label.getElement().getStyle().set("background", "#ffffff");
 
-        setDefaultVerticalComponentAlignment(Alignment.CENTER);
+        setDefaultVerticalComponentAlignment(Alignment.START);
         add(label);
     }
 
