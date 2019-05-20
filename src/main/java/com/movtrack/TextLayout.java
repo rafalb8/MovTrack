@@ -19,7 +19,9 @@ public class TextLayout extends HorizontalLayout {
     }
 
     public void setText(String html){
-        label.getElement().setProperty("innerHTML", html);
+        // label.getElement().setProperty("innerHTML", html);
+        // https://vaadin.com/forum/thread/17247162/bug-when-setting-innerhtml-property
+        label.getElement().executeJavaScript("this.innerHTML = $0", html);
     }
 
     public String getText(){

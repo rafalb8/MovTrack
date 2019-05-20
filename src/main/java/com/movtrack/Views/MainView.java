@@ -54,7 +54,6 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
         recommendedBar.clear();
         recommendedBar.setTitle("Recommendations");
 
-
         watchlistBar.show(listManager.getAllByListType(ListType.WatchList));
 
         List<MediaEntity> watchedlist = listManager.getAllByListType(ListType.Watched);
@@ -68,7 +67,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
 
             if(media.getMediaType().equals("movie")){
                 recommendedBar.setTitle("Movie recommendations");
-            } else {
+            } else if(media.getMediaType().equals("tv")){
                 recommendedBar.setTitle("TV Show recommendations");
             }
         }
