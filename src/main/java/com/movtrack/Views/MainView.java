@@ -29,7 +29,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
 
     public MainView() {
         banner = new Banner();
-        watchlistBar = new MediaBar("Watch List:");
+        watchlistBar = new MediaBar("Watch List");
         recommendedBar = new MediaBar("Recommendations");
 
         txtSearchBar = new TextField("Search");
@@ -52,6 +52,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
     public void beforeEnter(BeforeEnterEvent event) {
         watchlistBar.clear();
         recommendedBar.clear();
+        recommendedBar.setTitle("Recommendations");
 
         watchlistBar.show(listManager.getAllByListType(ListType.WatchList));
 
@@ -63,6 +64,12 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
 
             // Get recommendations
             recommendedBar.showRecommended(media.getMediaID(), media.getMediaType());
+
+            if(media.getMediaType().equals("movie")){
+                recommendedBar.setTitle("Movie recommendations");
+            } else if(media.getMediaType().equals("tv")){
+                recommendedBar.setTitle("TV Show recommendations");
+            }
         }
 
     }

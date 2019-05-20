@@ -17,12 +17,14 @@ public class MoviePoster extends VerticalLayout {
 
     public MoviePoster(int mediaID, String mediaType){
         client = RestClient.getInstance();
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         // Get information from TMDB
         if(mediaType.equals("movie")) {
             Movie movie = client.getMovieByID(String.valueOf(mediaID));
 
             lblTitle = new TextLayout("<b>" + movie.getTitle() + "</b>");
+            lblTitle.setBackground("#E7EBEF");
 
             if(movie.getPosterPath() != null) {
                 img = new Image(imgUrl + movie.getPosterPath(), "");
@@ -37,6 +39,7 @@ public class MoviePoster extends VerticalLayout {
             TvShow tv = client.getTVShowByID(String.valueOf(mediaID));
 
             lblTitle = new TextLayout("<b>" + tv.getName() + "</b>");
+            lblTitle.setBackground("#E7EBEF");
 
             if(tv.getPosterPath() != null) {
                 img = new Image(imgUrl + tv.getPosterPath(), "");
@@ -58,8 +61,11 @@ public class MoviePoster extends VerticalLayout {
         String mediaType = args.getValue2();
         String posterPath = args.getValue3();
 
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+
         client = null;
         lblTitle = new TextLayout("<b>" + mediaTitle + "</b>");
+        lblTitle.setBackground("#E7EBEF");
 
         if(posterPath != null) {
             img = new Image(imgUrl + posterPath, "");
