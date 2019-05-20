@@ -17,6 +17,7 @@ public class MoviePoster extends VerticalLayout {
 
     public MoviePoster(int mediaID, String mediaType){
         client = RestClient.getInstance();
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         // Get information from TMDB
         if(mediaType.equals("movie")) {
@@ -59,6 +60,8 @@ public class MoviePoster extends VerticalLayout {
         String mediaTitle = args.getValue1();
         String mediaType = args.getValue2();
         String posterPath = args.getValue3();
+
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         client = null;
         lblTitle = new TextLayout("<b>" + mediaTitle + "</b>");
