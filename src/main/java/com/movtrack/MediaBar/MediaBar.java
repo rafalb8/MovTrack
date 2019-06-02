@@ -45,7 +45,9 @@ public class MediaBar extends VerticalLayout {
 
     // Show Entries from Database
     public void show(List<MediaEntity> mediaList){
-        for(MediaEntity m : mediaList){
+
+        // Show 6 entries
+        for(MediaEntity m : mediaList.stream().limit(6).collect(Collectors.toList())){
             hlMovies.add(new MoviePoster(m.getMediaID(), m.getMediaType()));
         }
 
@@ -58,7 +60,9 @@ public class MediaBar extends VerticalLayout {
 
     // Show Pairs of mediaID and MediaType
     public void showPairs(List<Pair<Integer, String>> pairList){
-        for(Pair<Integer, String> pair : pairList){
+
+        // Show 6 entries
+        for(Pair<Integer, String> pair : pairList.stream().limit(6).collect(Collectors.toList())){
             hlMovies.add(new MoviePoster(pair.getValue0(), pair.getValue1()));
         }
 
@@ -71,7 +75,9 @@ public class MediaBar extends VerticalLayout {
 
     // Show Pairs of PosterPath and Title
     public void showPoster(List<Quartet<Integer, String, String, String>> args){
-        for(Quartet<Integer, String, String, String> arg : args){
+
+        // Show 6 entries
+        for(Quartet<Integer, String, String, String> arg : args.stream().limit(6).collect(Collectors.toList())){
             hlMovies.add(new MoviePoster(arg));
         }
 
@@ -102,6 +108,6 @@ public class MediaBar extends VerticalLayout {
         }
 
         // Show 6 entries
-        showPoster(args.stream().limit(6).collect(Collectors.toList()));
+        showPoster(args);
     }
 }
