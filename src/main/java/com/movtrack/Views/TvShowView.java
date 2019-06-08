@@ -36,6 +36,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
     private final Label lblGenre;
     private final Label lblPlot;
     private final Label lblSeasons;
+    private final Label lblVotes;
     private final MediaBar recommended;
 
     @Autowired
@@ -57,6 +58,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         lblGenre = new Label();
         lblPlot = new Label();
         lblSeasons = new Label();
+        lblVotes = new Label();
         recommended = new MediaBar("Recommended");
 
 
@@ -69,7 +71,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
-        vlInfo.add(hlTitle, lblSeasons, lblGenre, lblPlot);
+        vlInfo.add(hlTitle, lblVotes, lblSeasons, lblGenre, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
         add(banner, hlMainInfo, hlButtons, recommended);
@@ -122,7 +124,10 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         // Set seasons label
         lblSeasons.getElement().setProperty("innerHTML", "<b> Seasons: " + seasonCount + " | Episodes: " + episodeCount + "</b>");
 
-        // Update buttons
+        // Set votes label
+        lblVotes.getElement().setProperty("innerHTML", "<b> " + (int)(tvShow.getVoteAverage() * 10) + "% | " + tvShow.getVoteCount() + " votes</b>");
+
+                // Update buttons
         btnWatched.init("tv", tvShow.getId());
         btnWatchList.init("tv", tvShow.getId());
 
