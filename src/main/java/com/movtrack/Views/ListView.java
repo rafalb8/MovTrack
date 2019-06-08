@@ -30,18 +30,27 @@ public class ListView extends VerticalLayout implements HasUrlParameter<String> 
 
     public ListView(){
         banner = new Banner();
-        setHorizontalComponentAlignment(Alignment.CENTER, banner);
         vlPosters = new VerticalLayout();
         txtListTitle = new TextLayout("<b>Showing</b>");
         vlPosters.getElement().getStyle().set("background", "#E7EBEF");
+        vlPosters.setDefaultHorizontalComponentAlignment(Alignment.CENTER);
 
         btnSwitch = new Button("WatchList");
         btnSwitch.addClickListener(click -> btnClickEvent());
 
+        setHorizontalComponentAlignment(Alignment.CENTER, banner, txtListTitle);
         add(banner, txtListTitle, btnSwitch, vlPosters);
     }
 
     private void show(List<MediaEntity> mediaList){
+        vlPosters.removeAll();
+        if(mediaList.isEmpty()){
+            TextLayout txt = new TextLayout("<b>Nothing to show</b>");
+            txt.setBackground("#E7EBEF");
+            vlPosters.add(txt);
+            return;
+        }
+
         HorizontalLayout hlPosters = null;
         for (int i = 0; i < mediaList.size(); i++) {
             if(i % 6 == 0){
@@ -51,7 +60,6 @@ public class ListView extends VerticalLayout implements HasUrlParameter<String> 
 
             hlPosters.add(new MoviePoster(mediaList.get(i).getMediaID(), mediaList.get(i).getMediaType()));
         }
-
     }
 
     private void btnClickEvent(){
@@ -67,11 +75,11 @@ public class ListView extends VerticalLayout implements HasUrlParameter<String> 
 
         if (parameter.equals( ListType.WatchList.toString() )){
             type = ListType.WatchList;
-            txtListTitle.setText("<b>Showing Watchlist</b>");
+            txtListTitle.setText("<h1>Showing Watchlist</h1>");
             btnSwitch.setText("Watched");
         } else {
             type = ListType.Watched;
-            txtListTitle.setText("<b>Showing Watched</b>");
+            txtListTitle.setText("<h1>Showing Watched list</h1>");
             btnSwitch.setText("Watchlist");
         }
 
