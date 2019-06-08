@@ -5,6 +5,8 @@ import com.movtrack.List.WatchListButton;
 import com.movtrack.List.WatchedListButton;
 import com.movtrack.MediaBar.MediaBar;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.RestClient.TV.Genre;
+import com.movtrack.RestClient.TV.Season;
 import com.movtrack.RestClient.TV.TvShow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
@@ -33,6 +35,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
     private final Label lblTitle;
     private final Label lblGenre;
     private final Label lblPlot;
+    private final Label lblSeasons;
     private final MediaBar recommended;
 
     @Autowired
@@ -53,6 +56,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         lblTitle = new Label();
         lblGenre = new Label();
         lblPlot = new Label();
+        lblSeasons = new Label();
         recommended = new MediaBar("Recommended");
 
 
@@ -65,7 +69,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
-        vlInfo.add(hlTitle, lblGenre, lblPlot);
+        vlInfo.add(hlTitle, lblSeasons, lblGenre, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
         add(banner, hlMainInfo, hlButtons, recommended);
@@ -87,11 +91,36 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
             imgPoster.setSrc("https://image.tmdb.org/t/p/w300" + tvShow.getPosterPath());
         }
 
+        // Set TV show title label
         lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + (tvShow.getFirstAirDate() == null?"":" (" + tvShow.getFirstAirDate() + ")") +"</h1>");
+
+        // Build string with genres from the list
         if(!tvShow.getGenres().isEmpty()) {
-            lblGenre.getElement().setProperty("innerHTML", "<b>Genres: " + tvShow.getGenres().get(0).getName() + "</b>");
+            StringBuilder allGenres = new StringBuilder();
+
+            for(Genre genre : tvShow.getGenres()){
+                if(genre != tvShow.getGenres().get(0))
+                    allGenres.append(", ");
+
+                allGenres.append(genre.getName());
+            }
+
+            lblGenre.getElement().setProperty("innerHTML", "<b>Genres: " + allGenres.toString() + "</b>");
         }
+
+        // Set plot info
         lblPlot.getElement().setProperty("innerHTML","<i>"+tvShow.getOverview()+"</i>");
+
+
+        // Get season and episode count
+        int seasonCount = tvShow.getSeasons().size();
+        int episodeCount = 0;
+        for(Season season : tvShow.getSeasons()){
+            episodeCount += season.getEpisodeCount();
+        }
+
+        // Set seasons label
+        lblSeasons.getElement().setProperty("innerHTML", "<b> Seasons: " + seasonCount + " | Episodes: " + episodeCount + "</b>");
 
         // Update buttons
         btnWatched.init("tv", tvShow.getId());
