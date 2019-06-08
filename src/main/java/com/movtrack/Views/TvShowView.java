@@ -24,6 +24,7 @@ import javax.annotation.PostConstruct;
 public class TvShowView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;
+    private String imdbID;
 
     // Design
     private final Banner banner;
@@ -61,6 +62,8 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         lblVotes = new Label();
         recommended = new MediaBar("Recommended");
 
+        // Add click event to title
+        lblTitle.getElement().addEventListener("click", event -> goToIMDB());
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         hlMainInfo.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
@@ -127,13 +130,16 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         // Set votes label
         lblVotes.getElement().setProperty("innerHTML", "<b> " + (int)(tvShow.getVoteAverage() * 10) + "% | " + tvShow.getVoteCount() + " votes</b>");
 
-                // Update buttons
+        // Update buttons
         btnWatched.init("tv", tvShow.getId());
         btnWatchList.init("tv", tvShow.getId());
 
         // Recommended list
         recommended.setTitle("If you like " + tvShow.getName() + ", check out...");
         recommended.showRecommended(tvShow.getId(), "tv");
+
+        // Save imdb ID
+        imdbID = tvShow.getExternalIds().getImdbId();
     }
 
     @Override
@@ -142,5 +148,9 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         if(parameter.chars().allMatch(Character::isDigit)) {
             refreshInfo(restClient.getTVShowByID(parameter));
         }
+    }
+
+    private void goToIMDB(){
+        getUI().ifPresent(ui -> ui.getPage().executeJavaScript("window.open(\"http://imdb.com/title/"+imdbID+"\", \"_self\");"));
     }
 }

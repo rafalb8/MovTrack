@@ -43,7 +43,7 @@ public class NextEpisodeToAir {
     @JsonProperty("show_id")
     private Integer showId;
     @JsonProperty("still_path")
-    private Object stillPath;
+    private String stillPath;
     @JsonProperty("vote_average")
     private Integer voteAverage;
     @JsonProperty("vote_count")
@@ -132,12 +132,12 @@ public class NextEpisodeToAir {
     }
 
     @JsonProperty("still_path")
-    public Object getStillPath() {
+    public String getStillPath() {
         return stillPath;
     }
 
     @JsonProperty("still_path")
-    public void setStillPath(Object stillPath) {
+    public void setStillPath(String stillPath) {
         this.stillPath = stillPath;
     }
 

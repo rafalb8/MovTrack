@@ -30,6 +30,7 @@ class RestClientTest {
         TvShow m = restClient.getTVShowByID("63926");
 
         assertEquals("One-Punch Man", m.getName(), "Incorrect name");
+        assertEquals("tt4508902", m.getExternalIds().getImdbId(), "Incorrect imdb ID");
     }
 
     @Test
@@ -44,13 +45,11 @@ class RestClientTest {
     void movieRecommendationRequest(){
         MovieRecommendations mr = restClient.getMovieRecommendations("550");
         assertNotNull(mr.getResults(),"No recommendations");
-        assertEquals("Pulp Fiction", mr.getResults().get(0).getTitle() , "Incorrect title");
     }
 
     @Test
     void tvShowRecommendationRequest(){
         TvShowRecommendations tvr = restClient.getTvShowRecommendations("63926");
         assertNotNull(tvr.getResults(),"No recommendations");
-        assertEquals("Fullmetal Alchemist: Brotherhood", tvr.getResults().get(0).getName() , "Incorrect title");
     }
 }

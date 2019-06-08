@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.movtrack.RestClient.Media;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -41,9 +40,10 @@ import com.movtrack.RestClient.Media;
     "status",
     "type",
     "vote_average",
-    "vote_count"
+    "vote_count",
+    "external_ids"
 })
-public class TvShow implements Media {
+public class TvShow {
 
     @JsonProperty("backdrop_path")
     private String backdropPath;
@@ -101,6 +101,8 @@ public class TvShow implements Media {
     private Double voteAverage;
     @JsonProperty("vote_count")
     private Integer voteCount;
+    @JsonProperty("external_ids")
+    private ExternalIds externalIds;
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
@@ -382,6 +384,16 @@ public class TvShow implements Media {
     @JsonProperty("vote_count")
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
+    }
+
+    @JsonProperty("external_ids")
+    public ExternalIds getExternalIds() {
+        return externalIds;
+    }
+
+    @JsonProperty("external_ids")
+    public void setExternalIds(ExternalIds externalIds) {
+        this.externalIds = externalIds;
     }
 
     @JsonAnyGetter
