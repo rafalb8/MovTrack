@@ -3,10 +3,12 @@ package com.movtrack.List;
 import com.movtrack.List.DB.ListManager;
 import com.movtrack.List.DB.MediaEntity;
 import com.vaadin.flow.spring.annotation.SpringComponent;
+import com.vaadin.flow.spring.annotation.UIScope;
 import org.springframework.beans.factory.annotation.Autowired;
 
 // Button to add/remove movie to WatchList
 @SpringComponent
+@UIScope
 public class WatchedListButton extends ListButton {
     @Autowired
     ListManager listManager;
