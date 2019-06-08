@@ -32,10 +32,19 @@ public class WatchListButton extends ListButton {
 
     private void clickEvent(){
         if(!boolAdded){
-            listManager.save(new MediaEntity(mediaID, mediaType, listType));
+            // Create entity
+            MediaEntity media = new MediaEntity(mediaID, mediaType, listType);
+
+            // Add Entity to DB
+            ID = listManager.save(media);
+
+            // Show notification to user
             Notification.show("Added to Watched list");
         } else {
+            // Remove entry in DB
             listManager.deleteByID(ID);
+
+            // Show notification to user
             Notification.show("Removed from Watched list");
         }
 
