@@ -23,19 +23,22 @@ public class MediaBar extends VerticalLayout {
         super();
         hlMovies = new HorizontalLayout();
 
-        lblTitle = new TextLayout( "<h3>" + title + "</h3>");
+        lblTitle = new TextLayout( "<b>" + title + "</b>");
         lblText = new TextLayout("<b>Nothing to show</b>");
+        lblText.setVisible(false);
 
         // Set gray background
         getElement().getStyle().set("background", "#E7EBEF");
         lblText.setBackground("#E7EBEF");
         lblTitle.setBackground("#E7EBEF");
 
-        add(lblTitle, hlMovies);
+        setHorizontalComponentAlignment(Alignment.START, lblTitle);
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        add(lblTitle, hlMovies, lblText);
     }
 
     public void setTitle(String title){
-        lblTitle.setText("<h3>" + title + "</h3>");
+        lblTitle.setText("<b>" + title + "</b>");
     }
 
     public void clear(){
@@ -51,7 +54,7 @@ public class MediaBar extends VerticalLayout {
         }
 
         if(mediaList.isEmpty()){
-            hlMovies.add(lblText);
+            lblText.setVisible(true);
         }
     }
 
@@ -65,7 +68,7 @@ public class MediaBar extends VerticalLayout {
 
 
         if(pairList.isEmpty()){
-            hlMovies.add(lblText);
+            lblText.setVisible(true);
         }
     }
 
@@ -79,7 +82,7 @@ public class MediaBar extends VerticalLayout {
 
 
         if(args.isEmpty()){
-            hlMovies.add(lblText);
+            lblText.setVisible(true);
         }
     }
 
@@ -104,5 +107,10 @@ public class MediaBar extends VerticalLayout {
 
         // Show 6 entries
         showPoster(args);
+    }
+
+    // Write text when empty
+    public void showEmpty(){
+        lblText.setVisible(true);
     }
 }

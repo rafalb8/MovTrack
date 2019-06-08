@@ -71,6 +71,8 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
             } else if(media.getMediaType().equals("tv")){
                 recommendedBar.setTitle("TV Show recommendations");
             }
+        } else {
+            recommendedBar.showEmpty();
         }
 
     }
