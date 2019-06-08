@@ -32,7 +32,6 @@ public class MediaBar extends VerticalLayout {
         lblTitle.setBackground("#E7EBEF");
 
         add(lblTitle, hlMovies);
-        hlMovies.add(lblText);
     }
 
     public void setTitle(String title){
@@ -52,9 +51,7 @@ public class MediaBar extends VerticalLayout {
         }
 
         if(mediaList.isEmpty()){
-            lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
+            hlMovies.add(lblText);
         }
     }
 
@@ -66,10 +63,9 @@ public class MediaBar extends VerticalLayout {
             hlMovies.add(new MoviePoster(pair.getValue0(), pair.getValue1()));
         }
 
+
         if(pairList.isEmpty()){
-            lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
+            hlMovies.add(lblText);
         }
     }
 
@@ -81,10 +77,9 @@ public class MediaBar extends VerticalLayout {
             hlMovies.add(new MoviePoster(arg));
         }
 
+
         if(args.isEmpty()){
-            lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
+            hlMovies.add(lblText);
         }
     }
 

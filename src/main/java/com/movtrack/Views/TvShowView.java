@@ -87,8 +87,10 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
             imgPoster.setSrc("https://image.tmdb.org/t/p/w300" + tvShow.getPosterPath());
         }
 
-        lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + " (" + tvShow.getFirstAirDate() +")</h1>");
-        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + tvShow.getGenres().get(0).getName()+"</b>");
+        lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + (tvShow.getFirstAirDate() == null?"":" (" + tvShow.getFirstAirDate() + ")") +"</h1>");
+        if(!tvShow.getGenres().isEmpty()) {
+            lblGenre.getElement().setProperty("innerHTML", "<b>Genres: " + tvShow.getGenres().get(0).getName() + "</b>");
+        }
         lblPlot.getElement().setProperty("innerHTML","<i>"+tvShow.getOverview()+"</i>");
 
         // Update buttons
@@ -103,6 +105,8 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
         // Get info by id
-        refreshInfo(restClient.getTVShowByID(parameter));
+        if(parameter.chars().allMatch(Character::isDigit)) {
+            refreshInfo(restClient.getTVShowByID(parameter));
+        }
     }
 }

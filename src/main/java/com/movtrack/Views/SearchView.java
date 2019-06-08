@@ -64,8 +64,10 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
         }
 
         for(Result result: search.getResults()){
-            SerachResults movie = new SerachResults(result);
-            vlSearchResults.add(movie);
+            if(!result.getMediaType().equals("person")) {
+                SerachResults movie = new SerachResults(result);
+                vlSearchResults.add(movie);
+            }
         }
 
         lblEnd.setText("End of results");

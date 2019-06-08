@@ -87,7 +87,7 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
             imgPoster.setSrc("https://image.tmdb.org/t/p/w300" + movie.getPosterPath());
         }
 
-        lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + " (" + movie.getReleaseDate() +")</h1>");
+        lblTitle.getElement().setProperty("innerHTML","<h1>"+movie.getTitle() + (movie.getReleaseDate() == null?"":" (" + movie.getReleaseDate() + ")") +"</h1>");
         lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + movie.getGenres().get(0).getName()+"</b>");
         lblPlot.getElement().setProperty("innerHTML","<i>"+movie.getOverview()+"</i>");
 
@@ -103,6 +103,8 @@ public class MovieView extends VerticalLayout implements HasUrlParameter<String>
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
         // Get info by id
-        refreshInfo(restClient.getMovieByID(parameter));
+        if(parameter.chars().allMatch(Character::isDigit)) {
+            refreshInfo(restClient.getMovieByID(parameter));
+        }
     }
 }
