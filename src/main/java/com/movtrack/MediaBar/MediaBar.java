@@ -1,8 +1,8 @@
 package com.movtrack.MediaBar;
 
-import com.movtrack.TextLayout;
 import com.movtrack.List.DB.MediaEntity;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.TextLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.javatuples.Pair;
@@ -23,20 +23,22 @@ public class MediaBar extends VerticalLayout {
         super();
         hlMovies = new HorizontalLayout();
 
-        lblTitle = new TextLayout( "<h3>" + title + "</h3>");
+        lblTitle = new TextLayout( "<b>" + title + "</b>");
         lblText = new TextLayout("<b>Nothing to show</b>");
+        lblText.setVisible(false);
 
         // Set gray background
         getElement().getStyle().set("background", "#E7EBEF");
         lblText.setBackground("#E7EBEF");
         lblTitle.setBackground("#E7EBEF");
 
-        add(lblTitle, hlMovies);
-        hlMovies.add(lblText);
+        setHorizontalComponentAlignment(Alignment.START, lblTitle);
+        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
+        add(lblTitle, hlMovies, lblText);
     }
 
     public void setTitle(String title){
-        lblTitle.setText("<h3>" + title + "</h3>");
+        lblTitle.setText("<b>" + title + "</b>");
     }
 
     public void clear(){
@@ -45,40 +47,42 @@ public class MediaBar extends VerticalLayout {
 
     // Show Entries from Database
     public void show(List<MediaEntity> mediaList){
-        for(MediaEntity m : mediaList){
+
+        // Show 6 entries
+        for(MediaEntity m : mediaList.stream().limit(6).collect(Collectors.toList())){
             hlMovies.add(new MoviePoster(m.getMediaID(), m.getMediaType()));
         }
 
         if(mediaList.isEmpty()){
             lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
         }
     }
 
     // Show Pairs of mediaID and MediaType
     public void showPairs(List<Pair<Integer, String>> pairList){
-        for(Pair<Integer, String> pair : pairList){
+
+        // Show 6 entries
+        for(Pair<Integer, String> pair : pairList.stream().limit(6).collect(Collectors.toList())){
             hlMovies.add(new MoviePoster(pair.getValue0(), pair.getValue1()));
         }
 
+
         if(pairList.isEmpty()){
             lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
         }
     }
 
     // Show Pairs of PosterPath and Title
     public void showPoster(List<Quartet<Integer, String, String, String>> args){
-        for(Quartet<Integer, String, String, String> arg : args){
+
+        // Show 6 entries
+        for(Quartet<Integer, String, String, String> arg : args.stream().limit(6).collect(Collectors.toList())){
             hlMovies.add(new MoviePoster(arg));
         }
 
+
         if(args.isEmpty()){
             lblText.setVisible(true);
-        } else {
-            lblText.setVisible(false);
         }
     }
 
@@ -102,6 +106,11 @@ public class MediaBar extends VerticalLayout {
         }
 
         // Show 6 entries
-        showPoster(args.stream().limit(6).collect(Collectors.toList()));
+        showPoster(args);
+    }
+
+    // Write text when empty
+    public void showEmpty(){
+        lblText.setVisible(true);
     }
 }

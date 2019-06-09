@@ -35,8 +35,9 @@ public class ListManager {
         return mediaRepo.findByMediaType(type);
     }
 
-    public void save(MediaEntity movie){
-        mediaRepo.save(movie);
+    public int save(MediaEntity movie){
+        MediaEntity saved = mediaRepo.save(movie);
+        return saved.getID();
     }
 
     public void deleteByID(int id){

@@ -5,6 +5,8 @@ import com.movtrack.List.WatchListButton;
 import com.movtrack.List.WatchedListButton;
 import com.movtrack.MediaBar.MediaBar;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.RestClient.TV.Genre;
+import com.movtrack.RestClient.TV.Season;
 import com.movtrack.RestClient.TV.TvShow;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
@@ -22,6 +24,7 @@ import javax.annotation.PostConstruct;
 public class TvShowView extends VerticalLayout implements HasUrlParameter<String> {
 
     private RestClient restClient;
+    private String imdbID;
 
     // Design
     private final Banner banner;
@@ -33,6 +36,8 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
     private final Label lblTitle;
     private final Label lblGenre;
     private final Label lblPlot;
+    private final Label lblSeasons;
+    private final Label lblVotes;
     private final MediaBar recommended;
 
     @Autowired
@@ -53,8 +58,12 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         lblTitle = new Label();
         lblGenre = new Label();
         lblPlot = new Label();
+        lblSeasons = new Label();
+        lblVotes = new Label();
         recommended = new MediaBar("Recommended");
 
+        // Add click event to title
+        lblTitle.getElement().addEventListener("click", event -> goToIMDB());
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         hlMainInfo.setDefaultVerticalComponentAlignment(Alignment.STRETCH);
@@ -65,7 +74,7 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
 
         hlMainInfo.add(imgPoster, vlInfo);
         hlTitle.add(lblTitle);
-        vlInfo.add(hlTitle, lblGenre, lblPlot);
+        vlInfo.add(hlTitle, lblVotes, lblSeasons, lblGenre, lblPlot);
         vlInfo.getElement().getStyle().set("background", "#E7EBEF");
 
         add(banner, hlMainInfo, hlButtons, recommended);
@@ -87,9 +96,39 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
             imgPoster.setSrc("https://image.tmdb.org/t/p/w300" + tvShow.getPosterPath());
         }
 
-        lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + " (" + tvShow.getFirstAirDate() +")</h1>");
-        lblGenre.getElement().setProperty("innerHTML","<b>Genres: " + tvShow.getGenres().get(0).getName()+"</b>");
+        // Set TV show title label
+        lblTitle.getElement().setProperty("innerHTML","<h1>"+tvShow.getName() + (tvShow.getFirstAirDate() == null?"":" (" + tvShow.getFirstAirDate() + ")") +"</h1>");
+
+        // Build string with genres from the list
+        if(!tvShow.getGenres().isEmpty()) {
+            StringBuilder allGenres = new StringBuilder();
+
+            for(Genre genre : tvShow.getGenres()){
+                if(genre != tvShow.getGenres().get(0))
+                    allGenres.append(", ");
+
+                allGenres.append(genre.getName());
+            }
+
+            lblGenre.getElement().setProperty("innerHTML", "<b>Genres: " + allGenres.toString() + "</b>");
+        }
+
+        // Set plot info
         lblPlot.getElement().setProperty("innerHTML","<i>"+tvShow.getOverview()+"</i>");
+
+
+        // Get season and episode count
+        int seasonCount = tvShow.getSeasons().size();
+        int episodeCount = 0;
+        for(Season season : tvShow.getSeasons()){
+            episodeCount += season.getEpisodeCount();
+        }
+
+        // Set seasons label
+        lblSeasons.getElement().setProperty("innerHTML", "<b> Seasons: " + seasonCount + " | Episodes: " + episodeCount + "</b>");
+
+        // Set votes label
+        lblVotes.getElement().setProperty("innerHTML", "<b> " + (int)(tvShow.getVoteAverage() * 10) + "% | " + tvShow.getVoteCount() + " votes</b>");
 
         // Update buttons
         btnWatched.init("tv", tvShow.getId());
@@ -98,11 +137,20 @@ public class TvShowView extends VerticalLayout implements HasUrlParameter<String
         // Recommended list
         recommended.setTitle("If you like " + tvShow.getName() + ", check out...");
         recommended.showRecommended(tvShow.getId(), "tv");
+
+        // Save imdb ID
+        imdbID = tvShow.getExternalIds().getImdbId();
     }
 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
         // Get info by id
-        refreshInfo(restClient.getTVShowByID(parameter));
+        if(parameter.chars().allMatch(Character::isDigit)) {
+            refreshInfo(restClient.getTVShowByID(parameter));
+        }
+    }
+
+    private void goToIMDB(){
+        getUI().ifPresent(ui -> ui.getPage().executeJavaScript("window.open(\"http://imdb.com/title/"+imdbID+"\", \"_self\");"));
     }
 }

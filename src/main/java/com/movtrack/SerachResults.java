@@ -25,9 +25,9 @@ public class SerachResults extends HorizontalLayout {
         }
 
         if(result.getMediaType().equals("tv")) {
-            lblTitle = new Html("<h1>" + result.getName() + " (" + result.getFirstAirDate() + ")</h1>");
+            lblTitle = new Html("<h1>" + result.getName() + (result.getFirstAirDate().isEmpty()?"":" (" + result.getFirstAirDate() + ")") +"</h1>");
         } else {
-            lblTitle = new Html("<h1>" + result.getTitle() + " (" + result.getReleaseDate() + ")</h1>");
+            lblTitle = new Html("<h1>" + result.getTitle() + (result.getReleaseDate().isEmpty()?"":" (" + result.getReleaseDate() + ")") +"</h1>");
         }
 
         lblType = new Html("<h2>"+result.getMediaType().toUpperCase()+"</h2>");

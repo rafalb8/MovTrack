@@ -42,7 +42,7 @@ public class RestClient {
 
     // Get information about Tv Show
     public TvShow getTVShowByID(String id){
-        return webtarget.path("/tv/" + id).request(MediaType.APPLICATION_JSON).get(TvShow.class);
+        return webtarget.path("/tv/" + id).queryParam("append_to_response","external_ids").request(MediaType.APPLICATION_JSON).get(TvShow.class);
     }
 
     // Search for movie or tv show

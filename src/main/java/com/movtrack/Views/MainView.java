@@ -35,6 +35,7 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
         txtSearchBar = new TextField("Search");
         txtSearchBar.addKeyDownListener(Key.ENTER, event -> search());
 
+        watchlistBar.getElement().addEventListener("click", event -> getUI().ifPresent(ui -> ui.navigate("list/" + ListType.WatchList.toString())));
 
         setDefaultHorizontalComponentAlignment(Alignment.STRETCH);
         setHorizontalComponentAlignment(Alignment.CENTER, banner);
@@ -70,6 +71,8 @@ public class MainView extends VerticalLayout implements BeforeEnterObserver {
             } else if(media.getMediaType().equals("tv")){
                 recommendedBar.setTitle("TV Show recommendations");
             }
+        } else {
+            recommendedBar.showEmpty();
         }
 
     }

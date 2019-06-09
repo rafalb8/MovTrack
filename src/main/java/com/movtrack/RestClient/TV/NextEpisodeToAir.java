@@ -1,14 +1,10 @@
 
 package com.movtrack.RestClient.TV;
 
+import com.fasterxml.jackson.annotation.*;
+
 import java.util.HashMap;
 import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonAnyGetter;
-import com.fasterxml.jackson.annotation.JsonAnySetter;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonPropertyOrder({
@@ -43,7 +39,7 @@ public class NextEpisodeToAir {
     @JsonProperty("show_id")
     private Integer showId;
     @JsonProperty("still_path")
-    private Object stillPath;
+    private String stillPath;
     @JsonProperty("vote_average")
     private Integer voteAverage;
     @JsonProperty("vote_count")
@@ -132,12 +128,12 @@ public class NextEpisodeToAir {
     }
 
     @JsonProperty("still_path")
-    public Object getStillPath() {
+    public String getStillPath() {
         return stillPath;
     }
 
     @JsonProperty("still_path")
-    public void setStillPath(Object stillPath) {
+    public void setStillPath(String stillPath) {
         this.stillPath = stillPath;
     }
 

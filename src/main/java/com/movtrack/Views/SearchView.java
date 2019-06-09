@@ -1,10 +1,10 @@
 package com.movtrack.Views;
 
 import com.movtrack.Banner;
-import com.movtrack.SerachResults;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.Search.Result;
 import com.movtrack.RestClient.Search.Search;
+import com.movtrack.SerachResults;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -64,8 +64,10 @@ public class SearchView extends VerticalLayout implements HasUrlParameter<String
         }
 
         for(Result result: search.getResults()){
-            SerachResults movie = new SerachResults(result);
-            vlSearchResults.add(movie);
+            if(!result.getMediaType().equals("person")) {
+                SerachResults movie = new SerachResults(result);
+                vlSearchResults.add(movie);
+            }
         }
 
         lblEnd.setText("End of results");
