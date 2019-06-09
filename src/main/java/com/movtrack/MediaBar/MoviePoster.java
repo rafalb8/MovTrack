@@ -1,9 +1,9 @@
 package com.movtrack.MediaBar;
 
-import com.movtrack.TextLayout;
 import com.movtrack.RestClient.Movie.Movie;
 import com.movtrack.RestClient.RestClient;
 import com.movtrack.RestClient.TV.TvShow;
+import com.movtrack.TextLayout;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.javatuples.Quartet;

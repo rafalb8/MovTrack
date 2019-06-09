@@ -1,8 +1,8 @@
 package com.movtrack.MediaBar;
 
-import com.movtrack.TextLayout;
 import com.movtrack.List.DB.MediaEntity;
 import com.movtrack.RestClient.RestClient;
+import com.movtrack.TextLayout;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import org.javatuples.Pair;
