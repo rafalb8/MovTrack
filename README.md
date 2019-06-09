@@ -2,7 +2,7 @@
 Aplikacja webowa do tworzenia listy filmów do obejrzenia.
  
 # Wykorzystane Narzędzia
- - [TMDB Api](https://developers.themoviedb.org/3/) do pobierania informacji,szukania filmów.
+ - [TMDB Api](https://developers.themoviedb.org/3/) do pobierania informacji, szukania filmów.
  - [Vaadin Flow](https://vaadin.com/flow) do utworzenia aplikacji web
  - [JUnit 5](https://junit.org/junit5/) do testowania
  - [Maven](https://maven.apache.org/) do zarządzania projektem
