@@ -1,3 +1,9 @@
+
+Autor: Rafal Babinski
+
+Projekt PROZ 2019
+
+------------------------------
 # MovTrack
 Aplikacja webowa do tworzenia listy filmów do obejrzenia.
  
@@ -5,7 +11,12 @@ Aplikacja webowa do tworzenia listy filmów do obejrzenia.
  - [TMDB Api](https://developers.themoviedb.org/3/) do pobierania informacji, szukania filmów.
  - [Vaadin Flow](https://vaadin.com/flow) do utworzenia aplikacji web
  - [JUnit 5](https://junit.org/junit5/) do testowania
- - [Maven](https://maven.apache.org/) do zarządzania projektem
+ - [Maven](https://maven.apache.org/) do zarządz
+                <property>
+                    <name>vaadin.productionMode</name>
+                </property>
+            </activation>
+            <properties>ania projektem
  - [IntelliJ IDEA](https://www.jetbrains.com/idea/) środowisko programistyczne
  - [jsonschema2pojo](http://www.jsonschema2pojo.org/) do generawania klas Javy z JSON'ów
  - [Spring Boot](https://spring.io/projects/spring-boot) do serwera web i obsługi baz danych

@@ -17,12 +17,6 @@ public class RestClient {
     private Client client;
     private WebTarget webtarget;
 
-    /*
-        t - Get movie by title
-        i - Get movie by id
-        s - Search movie by title
-    */
-
     private RestClient(){
         client = ClientBuilder.newClient();
         webtarget = client.target("https://api.themoviedb.org/3").queryParam("api_key", "300a820bd8fc751e731843bb6e5a22d4");
